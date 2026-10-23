@@ -1,0 +1,28 @@
+{
+  "name": "ajans-os",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Ajans İşletim Sistemi — Faz 0 komut satırı prototipi",
+  "license": "UNLICENSED",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "ajans": "src/cli.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "validate": "node src/cli.js validate",
+    "check": "npm run lint && npm test"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.13.0"
+  }
+}

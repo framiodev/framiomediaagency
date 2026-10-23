@@ -1,0 +1,20 @@
+{
+  "spec_version": "0.1",
+  "intent": {
+    "message": "Yeni sezon ürünü raflarda",
+    "audience": "Mevcut takipçiler",
+    "platform": "instagram_post_1x1",
+    "label": "internal"
+  },
+  "canvas": { "w": 1080, "h": 1080, "unit": "px", "background": "brand.paper" },
+  "brand_ref": "demo_brand",
+  "grid": { "cols": 12, "margin": 80, "gutter": 20, "baseline": 8 },
+  "layers": [
+    { "id": "product", "type": "image", "src": "asset://product/hero", "fit": "contain", "box": { "x": 180, "y": 120, "w": 720, "h": 640 } },
+    { "id": "headline", "type": "text", "role": "headline", "text": "Şimdi ışığa çıktı", "font": "brand.display", "size": 72, "align": "center",
+      "box": { "x": 80, "y": 820, "w": 920, "h": 100 }, "color": "brand.ink", "lang": "tr" },
+    { "id": "caption", "type": "text", "role": "caption", "text": "Sınırlı üretim · Ağustos 2026", "font": "brand.text", "size": 28, "align": "center",
+      "box": { "x": 80, "y": 940, "w": 920, "h": 40 }, "color": "brand.muted", "lang": "tr" }
+  ],
+  "provenance": { "assets": [ { "id": "product/hero", "source": "placeholder — kullanıcı sağlayacak", "license": "TBD" } ] }
+}

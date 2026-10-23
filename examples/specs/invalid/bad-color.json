@@ -1,0 +1,94 @@
+{
+  "spec_version": "0.1",
+  "intent": {
+    "message": "Sabah ritüelinin yeni adı: törensel matcha",
+    "audience": "Çayyolu'nda yaşayan 25-40 yaş kahve alternatifi arayanlar",
+    "cta": "Bu hafta tadına bak",
+    "platform": "instagram_post_4x5",
+    "label": "concept_study"
+  },
+  "canvas": {
+    "w": 1080,
+    "h": 1350,
+    "unit": "px",
+    "background": "brand.paper",
+    "safe_area": {
+      "top": 120,
+      "bottom": 160,
+      "side": 72
+    }
+  },
+  "brand_ref": "pilot_b_cafe",
+  "grid": {
+    "cols": 12,
+    "rows": 12,
+    "margin": 72,
+    "gutter": 24,
+    "baseline": 8
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "image",
+      "src": "asset://photo/matcha-bowl-01",
+      "fit": "cover"
+    },
+    {
+      "id": "scrim",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "#00000066",
+      "grid": {
+        "col": 1,
+        "span": 12,
+        "row": 8,
+        "row_span": 5
+      }
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "role": "headline",
+      "text": "Yavaşla. Çırp. İç.",
+      "font": "brand.display",
+      "weight": 700,
+      "size": 96,
+      "line_height": 1.05,
+      "grid": {
+        "col": 1,
+        "span": 10,
+        "row": 9
+      },
+      "color": "red",
+      "lang": "tr"
+    },
+    {
+      "id": "cta",
+      "type": "text",
+      "role": "cta",
+      "text": "Bu hafta tadına bak",
+      "font": "brand.text",
+      "size": 36,
+      "grid": {
+        "col": 1,
+        "span": 6,
+        "row": 11
+      },
+      "color": "brand.accent",
+      "lang": "tr"
+    }
+  ],
+  "provenance": {
+    "assets": [
+      {
+        "id": "photo/matcha-bowl-01",
+        "source": "placeholder — kullanıcı sağlayacak",
+        "license": "TBD"
+      }
+    ]
+  },
+  "rubric": {
+    "scores": {},
+    "failures": []
+  }
+}
