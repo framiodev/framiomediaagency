@@ -18,7 +18,7 @@
     "brand": "node src/cli.js brand",
     "check": "npm run lint && npm test",
     "doctor": "node scripts/doctor.mjs",
-    "benchmark": "node scripts/benchmark.mjs"
+    "benchmark": "node --env-file-if-exists=.env scripts/benchmark.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.2.0",
