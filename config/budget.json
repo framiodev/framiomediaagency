@@ -1,0 +1,8 @@
+{
+  "$comment": "Monthly spend caps in USD. When a call could push spending over a cap it is refused before it is sent and the user must approve (CLAUDE.md). Values are a starting point from brief section 9 (~60 outputs ≈ 11-25 USD); the user sets the real numbers.",
+  "monthly_usd": 25,
+  "per_brand_monthly_usd": {
+    "default": 10
+  },
+  "ledger_path": "data/ledger.jsonl"
+}

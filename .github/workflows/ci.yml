@@ -16,6 +16,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: node scripts/doctor.mjs --ci
       - run: npm run lint
       - run: npm test
       - run: npm run validate -- examples/specs/valid/*.json

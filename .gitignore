@@ -10,3 +10,6 @@ secrets/
 
 # Brand assets (logos, fonts) are client files
 brands/*/assets/
+
+# Model call ledger (costs, usage)
+data/

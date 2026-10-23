@@ -1,0 +1,57 @@
+{
+  "$comment": "Model prices in USD per million tokens. Never hard-code prices in source; update here. Sources: Anthropic API price table (claude-api skill cache, 2026-10-06) and brief section 9. Verify before each benchmark.",
+  "currency": "USD",
+  "fx": {
+    "USD_TRY": null,
+    "verified": false,
+    "note": "Kur doğrulanmadı (brief Bölüm 9). Bütçe USD tutulur; TL gösterimi kur girildiğinde açılır."
+  },
+  "models": {
+    "claude-opus-5-5": {
+      "provider": "anthropic",
+      "input": 4.0,
+      "output": 20.0,
+      "cache_read": 0.2,
+      "cache_write_multiplier": 1.25,
+      "batch_discount": 0.5,
+      "fallbacks": "default",
+      "verified": "2026-10-06"
+    },
+    "claude-sonnet-5-5": {
+      "provider": "anthropic",
+      "input": 2.0,
+      "output": 10.0,
+      "cache_read": 0.2,
+      "cache_write_multiplier": 1.25,
+      "batch_discount": 0.5,
+      "fallbacks": "default",
+      "verified": "2026-10-06"
+    },
+    "claude-haiku-5-5": {
+      "provider": "anthropic",
+      "tiers": [
+        { "max_input_tokens": 100000, "input": 0.1, "output": 0.5 },
+        { "input": 0.5, "output": 2.5 }
+      ],
+      "cache_read": null,
+      "cache_write_multiplier": 1.25,
+      "batch_discount": 0.5,
+      "verified": "2026-10-06"
+    },
+    "gemini-flash": {
+      "provider": "gemini",
+      "model_id": null,
+      "input": 0.75,
+      "output": 3.75,
+      "verified": false,
+      "note": "Model kimliği ve fiyat doğrulanmadı (brief: ~0,5-0,75 / ~3-3,75). F0-8 öncesi kontrol edilecek; sağlayıcı adaptörü henüz yok."
+    }
+  },
+  "roles": {
+    "concept": "claude-opus-5-5",
+    "layout": "claude-opus-5-5",
+    "critique": "claude-haiku-5-5",
+    "classify": "claude-haiku-5-5",
+    "translate": "claude-haiku-5-5"
+  }
+}

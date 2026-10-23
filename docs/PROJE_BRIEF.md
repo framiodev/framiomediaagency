@@ -29,7 +29,7 @@ Kapsam (kademeli):
 | Ürün biçimi | Bağımsız program; Windows, macOS, Android. Canva tarzı şablon aracı değil: tüm Adobe uygulamalarının ve kullanıcının Rust uygulamalarının yeteneklerini ajanlara açan profesyonel tasarım aracı (v0.3) |
 | Sahiplik | Önce kullanıcının kendi ajansının aracı; ileride sistem olarak satılabilir yapı |
 | Altyapı | Bulut tabanlı çekirdek; telefon, tablet, PC'den kesintisiz erişim |
-| Evdeki makine | Casper Excalibur G870 (dizüstü), Windows 11, RTX 4070; sürekli açık kalabilir; "işçi" (worker) olarak kullanılacak |
+| Evdeki makine | Casper Excalibur G870 (dizüstü), Windows 11, **RTX 4060 Laptop 8 GB** (nvidia-smi ile doğrulandı, 2026-10-23; önceki "4070" bilgisi yanlıştı); sürekli açık kalabilir; "işçi" (worker) olarak kullanılacak |
 | Başlangıç motorları | Önce Adobe uygulamaları (Creative Cloud Tüm Uygulamalar) + açık kaynak araçlar; sonra kullanıcının kendi Rust motoru. Envanter: Bölüm 4a |
 | Otonomluk | Başta her şey onaya gelir; öğrenme ve güvenle artar |
 | Bütçe | API için "çok ciddi para" ödenmeyecek. Referans: şu an Adobe'ye aylık ~1.700 (TL olduğu varsayıldı, doğrula) ödeniyor; benzer aralık hedeflendi |
@@ -76,7 +76,7 @@ Temel ilkeler:
 
 Makine: **Casper Excalibur G870, dizüstü**, Windows 11, kullanıcıya göre RTX 4070.
 
-- **Model kodunu ve VRAM'i doğrula** (Görev Yöneticisi > Performans > GPU). Bir haber kaynağı bu seriyi RTX 4060'a kadar listeliyor, yeni G870 sürümleri RTX 5070/5060 ile satılıyor; kullanıcının 4070'li sürümü doğrulanmadı. Dizüstü RTX 4070'ler genellikle **8 GB VRAM** taşır (varsayım, doğrula). Aşağıdaki yerel yapay zekâ kararları buna dayanır.
+- **Doğrulandı (2026-10-23, nvidia-smi):** GPU **RTX 4060 Laptop, 8 GB VRAM**, sürücü 610.88. Önceki "RTX 4070" bilgisi yanlıştı; 8 GB VRAM varsayımı doğru. Aşağıdaki yerel yapay zekâ kararları buna dayanır.
 - **7/24 işçi olarak dizüstü:** Fişte çalışsın, uyku/hazırda bekletme kapalı olsun, sıcaklık ve fan izlensin, havalandırma temiz tutulsun, mümkünse pil şarj sınırı kullanılsın (üreticinin yazılımı varsa), Windows güncellemeleri için etkin saatler ayarlansın. Gündüz kişisel kullanımla çakışırsa ileride ikinci bir küçük makine düşünülür.
 - **Adobe işçisi Windows'ta çalışır:** adb-mcp (UXP) ve dcc-mcp-photoshop Windows'u destekler. Photoshop/Premiere açık ve giriş yapılmış olmalı; UXP eklentisi yeniden başlatmada tekrar yüklenmek zorunda kalabilir.
 - **Yerel yapay zekâ (8 GB varsayımıyla):** ComfyUI ile SDXL sınıfı görsel üretim makul olabilir; daha büyük modeller kuantize edilmeli. Yerel video üretimi pratik değil, video için API kullan (Bölüm 10). Küçük kuantize bir vision/LLM modeli referans etiketlemeyi ücretsiz yapabilir. Hepsi Faz 0'da ölçülür (F0-11).
@@ -319,6 +319,7 @@ Hedef: Arayüz yok; komut satırında "brief → spec → yerel render → eleş
 | F0-9 | Referans ajanslardan (ESG Dijital, Zemberenk Medya) **marka bazlı** stil kartı çıkarma; kullanıcı bağlantı/ekran görüntüsü verir | Ajans→marka→sektör tablosu; 10-15 örnek kart; her kartta "neden iyi?" notu |
 | F0-10 | Faz 0 raporu ve Faz 1 kararları (API dili, render seçimi) | Karar kayıtları (ADR) yazılır |
 | F0-11 | **GPU ölçümü** (Casper dizüstü): VRAM, ComfyUI SDXL süresi, küçük yerel vision modeli hızı, sürekli çalışma sıcaklığı | Ölçüm raporu; yerel/bulut iş dağılımı kararı |
+| F0-13 | **Zengin kompozisyon** (YENİ): spec v0.2'nin kompozisyon alt kümesi (satır içi renk/kalınlık, gradyan, maske/kırpma, açılı şekil, döndürme, desen, gölge) resvg ve Photoshop motorlarında; rubrik denetimleri yeni özelliklere uyarlanır | DK Köksallar stil kartındaki ilkelerle (iki renkli güzergâh başlığı, logo/iletişim imzası, açılı kesim, bayram deseni) 3 gönderi her iki motorda render edilir ve rubrikten geçer; F0-8 bunların üzerinden yapılır |
 | F0-12 | **Adobe fizibilitesi** (YENİ): aynı spec'ten Photoshop'ta katmanlı PSD; logo büyütme/vektörleştirme; After Effects, Premiere, Lightroom, Illustrator otomasyon yollarının denenmesi | Her program için çalışan/çalışmayan işlemler, süre ve kırılganlık raporu (docs/reports/f0-12-adobe.md); işlem katmanı için ADR |
 
 Faz 0 bitmeden arayüze geçilmez. Kalite kanıtı pilot markalar için körleme karşılaştırmayla (şablon çıktısına karşı) doğrulanır; pilot çalışmalar yayınlanmaz (Bölüm 8a).

@@ -4,6 +4,7 @@ import { basename, dirname, join } from 'node:path';
 import { validateSpec } from './spec/validate.js';
 import { renderSpec } from './render/png.js';
 import { checkSpec } from './rubric/checks.js';
+import { Ledger } from './llm/ledger.js';
 import { validateBrandKitFile } from './brand/validate.js';
 import { checkFontFile } from './brand/glyphs.js';
 
@@ -12,7 +13,8 @@ const USAGE = `Usage:
   ajans brand <brand-kit.json> [...]    validate brand kits (incl. font glyphs)
   ajans glyphs <font.ttf|otf|woff|woff2> [...] check Turkish glyph coverage
   ajans render <spec.json> [-o out.png] [--brands dir]   render a spec to PNG
-  ajans check <spec.json> [...] [--brands dir] [--json]   deterministic rubric checks`;
+  ajans check <spec.json> [...] [--brands dir] [--json]   deterministic rubric checks
+  ajans cost [YYYY-MM]                  model spending against budget caps`;
 
 const commands = {
   validate: (file) => validateSpec(JSON.parse(readFileSync(file, 'utf8'))),
@@ -52,6 +54,20 @@ if (command === 'render') {
     console.error(`✗ ${file}: ${err.message}`);
     process.exit(1);
   }
+}
+
+if (command === 'cost') {
+  // ajans cost [YYYY-MM]: model spending against the caps in config/budget.json
+  const budget = JSON.parse(readFileSync('config/budget.json', 'utf8'));
+  const ledger = new Ledger(budget.ledger_path);
+  const month = files[0] ?? new Date().toISOString().slice(0, 7);
+  const entries = ledger.entries().filter((e) => e.at.startsWith(month));
+  console.log(`${month}: ${ledger.spent(month).toFixed(4)} / ${budget.monthly_usd} USD, ${entries.length} calls`);
+  for (const brand of [...new Set(entries.map((e) => e.brand).filter(Boolean))]) {
+    const cap = budget.per_brand_monthly_usd?.[brand] ?? budget.per_brand_monthly_usd?.default;
+    console.log(`  ${brand}: ${ledger.spent(month, { brand }).toFixed(4)} / ${cap ?? '—'} USD`);
+  }
+  process.exit(0);
 }
 
 if (command === 'check') {
