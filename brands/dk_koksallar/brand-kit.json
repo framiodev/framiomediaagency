@@ -17,7 +17,7 @@
     {
       "kind": "instagram",
       "url": "https://www.instagram.com/koksallarcom/",
-      "verified": false
+      "verified": true
     }
   ],
   "colors": {
@@ -109,11 +109,21 @@
     }
   ],
   "tone": {
-    "voice": null,
-    "address": null,
-    "do": [],
-    "dont": [],
-    "sample": "Yola Bizimle Çık, Hikayeni Sen Yaz! (web sitesi üst bandı)"
+    "voice": "Sıcak, coşkulu ve güven veren; konfor, güvenlik, dakiklik ve keyif vurgusu. Yolculuk merkezde.",
+    "address": "siz",
+    "do": [
+      "Güzergâhı (Şehir ⇄ Şehir) en büyük öğe yap",
+      "Sefer saatlerini net ver",
+      "Konfor, güven, dakiklik değerlerinden birini öne çıkar",
+      "Telefon ve web adresiyle bitir",
+      "Metinde ölçülü emoji ve 4-6 hashtag (#DKKöksallar + güzergâh)"
+    ],
+    "dont": [
+      "Başka ajansın gönderi yerleşimini veya metnini kopyalama",
+      "Akışta okunamayacak küçük gövde metni",
+      "Tek görselde birden fazla ana mesaj"
+    ],
+    "sample": "Bu gece yola çıkın, sabah dinlenmiş varın. Mersin ⇄ İstanbul seferleri her gün."
   },
   "provenance": {
     "assets": [
@@ -134,9 +144,7 @@
     ]
   },
   "open_questions": [
-    "Ses tonu: sen mi siz mi? Instagram kazınmaz; beğendiğin veya tipik 5-10 gönderinin bağlantısı ya da ekran görüntüsü gerekli",
-    "Logo yüksek çözünürlüklü/vektör yok; sitedeki 338×45 PNG konsept için yeterli mi?",
-    "Renkler web sitesinden çıkarıldı; resmi marka kılavuzu yok, gönderilerde farklı renk kullanılıyor mu?"
+    "Logo yüksek çözünürlüklü/vektör yok; sitedeki 338×45 PNG konsept için yeterli mi?"
   ],
-  "notes": "ESG Dijital ile Eylül 2026'da yollarını ayırdı (kullanıcı bilgisi, 2026-10-23); şu an ajanssız olduğu düşünülüyor. Yine de gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz, markaya gönderilmez. İleride teklif sunulursa İYS ve KVKK kuralları uygulanır."
+  "notes": "ESG Dijital ile Eylül 2026'da yollarını ayırdı (kullanıcı bilgisi, 2026-10-23); şu an ajanssız olduğu düşünülüyor. Yine de gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz, markaya gönderilmez. İleride teklif sunulursa İYS ve KVKK kuralları uygulanır. Instagram stil kartı: docs/style-cards/dk_koksallar.md (2026-10-23)."
 }

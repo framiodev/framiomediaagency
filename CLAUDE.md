@@ -26,4 +26,4 @@ Ayrıntılı plan: `docs/PROJE_BRIEF.md` (her oturumun başında oku).
 - DK Köksallar (şehirlerarası otobüs firması) Eylül 2026'ya kadar ESG Dijital müşterisiydi, şu an ajanssız görünüyor. Yine de izinsizdir: markayla iletişim kurma, kullanıcı söylemeden portföyde kullanma.
 - Marka kitleri yalnızca kullanıcının verdiği veya halka açık varlıklardan çıkarılır; font, logo ve görsellerin kaynağını ve lisansını `provenance` alanına yaz.
 - Referans ajansların (ESG Dijital, Zemberenk Medya) işlerinden yalnızca **ilke ve teknik** çıkarılır (stil kartı); yerleşim, metin veya görsel kopyalanmaz.
-- Sosyal medya platformlarını otomatik kazıma (scraping); yalnızca kullanıcının verdiği bağlantı/ekran görüntüleri veya resmi API'ler.
+- Sosyal medya platformlarını otomatik kazıma (scraping) yok: toplu veri çekme betiği, dosya indirme yok. Kaynaklar: kullanıcının verdiği bağlantı/ekran görüntüleri, resmi API'ler veya kullanıcının açıkça istediği durumda tarayıcıda elle, salt okunur inceleme (beğenme, takip, mesaj yok). Çıktı stil kartıdır, kopya değil.
