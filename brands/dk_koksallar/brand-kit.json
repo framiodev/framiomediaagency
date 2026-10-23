@@ -55,9 +55,32 @@
       "hex": "#798195",
       "role": "muted",
       "source": "web sitesi CSS (ikincil metin), 2026-10-23"
+    },
+    "ink_inverse": {
+      "hex": "#FFFFFF",
+      "role": "ink_inverse",
+      "source": "türetilmiş: paper ile aynı beyaz, koyu zemin üstü metin için"
     }
   },
   "fonts": {
+    "display": {
+      "family": "Inter",
+      "files": [
+        "assets/Inter[opsz,wght].ttf"
+      ],
+      "weights": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "asset_id": "font/inter"
+    },
     "text": {
       "family": "Inter",
       "files": [

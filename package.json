@@ -19,12 +19,14 @@
     "check": "npm run lint && npm test"
   },
   "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "ajv": "^8.20.0",
-    "opentype.js": "^2.0.0"
+    "fontkit": "^2.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
     "eslint": "^9.39.5",
-    "globals": "^17.13.0"
+    "globals": "^17.13.0",
+    "opentype.js": "^2.0.0"
   }
 }

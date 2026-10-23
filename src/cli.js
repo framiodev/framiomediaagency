@@ -1,13 +1,16 @@
 #!/usr/bin/env node
-import { readFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join } from 'node:path';
 import { validateSpec } from './spec/validate.js';
+import { renderSpec } from './render/png.js';
 import { validateBrandKitFile } from './brand/validate.js';
 import { checkFontFile } from './brand/glyphs.js';
 
 const USAGE = `Usage:
   ajans validate <spec.json> [...]      validate design specs
   ajans brand <brand-kit.json> [...]    validate brand kits (incl. font glyphs)
-  ajans glyphs <font.ttf|otf|woff> [...] check Turkish glyph coverage`;
+  ajans glyphs <font.ttf|otf|woff|woff2> [...] check Turkish glyph coverage
+  ajans render <spec.json> [-o out.png] [--brands dir]   render a spec to PNG`;
 
 const commands = {
   validate: (file) => validateSpec(JSON.parse(readFileSync(file, 'utf8'))),
@@ -20,6 +23,35 @@ const commands = {
 };
 
 const [command, ...files] = process.argv.slice(2);
+
+if (command === 'render') {
+  // ajans render <spec.json> [-o out.png] [--brands dir]
+  const flag = (name, def) => {
+    const i = files.indexOf(name);
+    return i === -1 ? def : files.splice(i, 2)[1];
+  };
+  const out = flag('-o');
+  const brandsDir = flag('--brands', 'brands');
+  if (files.length !== 1) {
+    console.error(USAGE);
+    process.exit(2);
+  }
+  const [file] = files;
+  const target = out ?? join('out', basename(file).replace(/\.json$/, '.png'));
+  try {
+    const started = performance.now();
+    const { png, warnings } = renderSpec(JSON.parse(readFileSync(file, 'utf8')), { brandsDir });
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, png);
+    for (const w of warnings) console.warn(`  ! ${w}`);
+    console.log(`✓ ${target} (${Math.round(performance.now() - started)} ms)`);
+    process.exit(0);
+  } catch (err) {
+    console.error(`✗ ${file}: ${err.message}`);
+    process.exit(1);
+  }
+}
+
 const run = commands[command];
 if (!run || files.length === 0) {
   console.error(USAGE);

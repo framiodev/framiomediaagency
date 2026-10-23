@@ -55,9 +55,32 @@
       "hex": "#545454",
       "role": "muted",
       "source": "web sitesi CSS (ikincil metin), 2026-10-23"
+    },
+    "ink_inverse": {
+      "hex": "#FFFFFF",
+      "role": "ink_inverse",
+      "source": "türetilmiş: paper ile aynı beyaz, koyu zemin üstü metin için"
     }
   },
   "fonts": {
+    "display": {
+      "family": "League Spartan",
+      "files": [
+        "assets/LeagueSpartan[wght].ttf"
+      ],
+      "asset_id": "font/spartan",
+      "weights": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ]
+    },
     "text": {
       "family": "League Spartan",
       "files": [
@@ -81,7 +104,7 @@
     {
       "id": "logo_primary",
       "variant": "primary",
-      "file": "assets/logo.webp",
+      "file": "assets/logo.png",
       "asset_id": "logo/whisk_primary"
     }
   ],
@@ -106,7 +129,7 @@
         "source": "https://cdn.myikas.com/images/theme-images/c1482a17-185c-4569-aafb-cc63b309d9b3/image_1080.webp",
         "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması",
         "retrieved": "2026-10-23",
-        "notes": "1080 px WebP, saydam zemin, el yazısı wordmark. Rengi #84ABD5 ile uyumlu."
+        "notes": "1080 px WebP, saydam zemin, el yazısı wordmark. Rengi #84ABD5 ile uyumlu. Renderer WebP okuyamadığı için Windows WIC ile PNG formatına çevrildi (assets/logo.png); kaynak dosya assets/logo.webp."
       }
     ]
   },

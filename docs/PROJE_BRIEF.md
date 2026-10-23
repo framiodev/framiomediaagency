@@ -67,7 +67,7 @@ Temel ilkeler:
 | Veritabanı | Postgres + pgvector | Yönetilen servis (ör. Supabase) kabul edilebilir |
 | Kuyruk | Postgres tabanlı veya Redis | Basit başla |
 | Depolama | S3 uyumlu (ör. Cloudflare R2) | |
-| Render (başlangıç) | Headless tarayıcıyla HTML/SVG → PNG/PDF; metin ölçümü ve Türkçe karakter denetimi | Playwright veya resvg; Faz 0'da seç |
+| Render (başlangıç) | Headless tarayıcıyla HTML/SVG → PNG/PDF; metin ölçümü ve Türkçe karakter denetimi | **Seçildi: resvg** (ADR 0002) |
 | Rust motoru (sonra) | linebender/vello, resvg, wgpu | Vello alfa aşamasında |
 
 ## 3a. Donanım ve geliştirme ortamı (YENİ)
@@ -103,7 +103,8 @@ Her eklenti: manifest (yetenekler, platform, izinler) + ayrı süreç + ortak i�
 | linebender/vello | Rust 2B çizim motoru | Her yerde | Alfa |
 | ajv (npm) | Spec JSON Schema doğrulama | Her yerde | MIT, aktif; F0-2 ile eklendi (bkz. docs/dependencies.md) |
 | eslint, @eslint/js, globals (npm) | Lint (yalnızca geliştirme) | Her yerde | MIT, aktif; F0-1 ile eklendi |
-| opentype.js (npm) | Font okuma, Türkçe glif denetimi | Her yerde | MIT, aktif; F0-3 ile eklendi |
+| fontkit (npm) | Font okuma, değişken font, Türkçe glif denetimi | Her yerde | MIT, aktif; F0-4 ile opentype.js yerine geçti |
+| @resvg/resvg-js (npm) | Yerel SVG → PNG renderer | Her yerde | MPL-2.0, aktif; F0-4, bkz. docs/adr/0002-renderer.md |
 
 **REA (morluto/rea) hakkında:** Bu repo "Reverse Engineer Anything"tir; yazılım/binary analizi içindir, tasarım mantığıyla ilgisi yoktur. Ticari programları (Adobe) çözüp kopyalamak lisans/hukuk riskidir. Rust motoru için referans olarak kaynak kodu açık programlar (GIMP, Krita, Inkscape, darktable, RawTherapee) kullanılır.
 

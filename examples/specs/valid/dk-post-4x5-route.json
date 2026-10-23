@@ -1,0 +1,145 @@
+{
+  "spec_version": "0.1",
+  "intent": {
+    "message": "Mersin–İstanbul hattında her gece sefer var",
+    "audience": "Mersin ve İstanbul arasında düzenli yolculuk yapanlar",
+    "cta": "Biletini dkkoksallar.com'dan al",
+    "platform": "instagram_post_4x5",
+    "label": "concept_study"
+  },
+  "canvas": {
+    "w": 1080,
+    "h": 1350,
+    "unit": "px",
+    "background": "brand.primary",
+    "safe_area": {
+      "top": 120,
+      "bottom": 160,
+      "side": 72
+    }
+  },
+  "brand_ref": "dk_koksallar",
+  "grid": {
+    "cols": 12,
+    "rows": 12,
+    "margin": 72,
+    "gutter": 24,
+    "baseline": 8
+  },
+  "layers": [
+    {
+      "id": "band",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.paper",
+      "grid": {
+        "col": 1,
+        "span": 12,
+        "row": 1,
+        "row_span": 2
+      },
+      "radius": 16
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "src": "asset://logo",
+      "fit": "contain",
+      "grid": {
+        "col": 2,
+        "span": 10,
+        "row": 1,
+        "row_span": 2
+      }
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "role": "label",
+      "text": "HER GECE 22:30",
+      "font": "brand.text",
+      "size": 30,
+      "tracking": 0.14,
+      "grid": {
+        "col": 1,
+        "span": 12,
+        "row": 4
+      },
+      "color": "brand.sky",
+      "lang": "tr",
+      "weight": 600
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "role": "headline",
+      "text": "Mersin\nİstanbul",
+      "font": "brand.display",
+      "size": 150,
+      "line_height": 0.98,
+      "grid": {
+        "col": 1,
+        "span": 12,
+        "row": 5,
+        "row_span": 3
+      },
+      "color": "brand.ink_inverse",
+      "lang": "tr",
+      "weight": 700
+    },
+    {
+      "id": "accent",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.accent",
+      "box": {
+        "x": 72,
+        "y": 950,
+        "w": 160,
+        "h": 10
+      }
+    },
+    {
+      "id": "body",
+      "type": "text",
+      "role": "body",
+      "text": "Sabah şehre dinlenmiş varın. Koltuk seçimi ve e-bilet tek ekranda.",
+      "font": "brand.text",
+      "size": 38,
+      "line_height": 1.3,
+      "grid": {
+        "col": 1,
+        "span": 9,
+        "row": 10,
+        "row_span": 2
+      },
+      "color": "brand.ink_inverse",
+      "lang": "tr"
+    },
+    {
+      "id": "cta",
+      "type": "text",
+      "role": "cta",
+      "text": "dkkoksallar.com",
+      "font": "brand.text",
+      "size": 34,
+      "grid": {
+        "col": 1,
+        "span": 8,
+        "row": 12
+      },
+      "color": "brand.sky",
+      "lang": "tr",
+      "weight": 600
+    }
+  ],
+  "provenance": {
+    "assets": [
+      {
+        "id": "logo",
+        "source": "https://www.dkkoksallar.com/dkkoksallar/uploads/logo.png",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept"
+      }
+    ]
+  }
+}

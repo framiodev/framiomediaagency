@@ -1,23 +1,97 @@
 {
   "spec_version": "0.1",
   "intent": {
-    "message": "Cumartesi kahvaltısı için yer ayırtın",
-    "audience": "Hafta sonu kahvaltı yapan aileler",
-    "cta": "DM ile rezervasyon",
+    "message": "Matcha'nın nasıl çırpıldığını üç adımda anlat",
+    "audience": "Evde matcha hazırlamak isteyen takipçiler",
+    "cta": "Ekipman için profile git",
     "platform": "instagram_story_9x16",
     "label": "concept_study"
   },
-  "canvas": { "w": 1080, "h": 1920, "unit": "px", "background": "#F4EFE6", "safe_area": { "top": 250, "bottom": 340, "side": 64 } },
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "unit": "px",
+    "background": "brand.sky",
+    "safe_area": {
+      "top": 250,
+      "bottom": 340,
+      "side": 64
+    }
+  },
   "brand_ref": "whisk",
-  "grid": { "cols": 6, "rows": 16, "margin": 64, "gutter": 24, "baseline": 8 },
+  "grid": {
+    "cols": 6,
+    "rows": 16,
+    "margin": 64,
+    "gutter": 24,
+    "baseline": 8
+  },
   "layers": [
-    { "id": "kicker", "type": "text", "role": "label", "text": "CUMARTESİ · 09:00–13:00", "font": "brand.text", "size": 32, "tracking": 0.12,
-      "grid": { "col": 1, "span": 6, "row": 4 }, "color": "brand.accent", "lang": "tr" },
-    { "id": "headline", "type": "text", "role": "headline", "text": "Uzun, ağır, güzel bir kahvaltı.", "font": "brand.display", "size": 120,
-      "line_height": 1.0, "grid": { "col": 1, "span": 6, "row": 5, "row_span": 5 }, "color": "brand.ink", "lang": "tr" },
-    { "id": "rule", "type": "shape", "shape": "line", "fill": "brand.ink", "box": { "x": 64, "y": 1300, "w": 300, "h": 4 } },
-    { "id": "cta", "type": "text", "role": "cta", "text": "Rezervasyon için DM", "font": "brand.text", "size": 40,
-      "grid": { "col": 1, "span": 4, "row": 12 }, "color": "brand.ink", "lang": "tr" }
+    {
+      "id": "kicker",
+      "type": "text",
+      "role": "label",
+      "text": "EVDE MATCHA · 1/3",
+      "font": "brand.text",
+      "size": 32,
+      "tracking": 0.12,
+      "grid": {
+        "col": 1,
+        "span": 6,
+        "row": 3
+      },
+      "color": "brand.ink_inverse",
+      "lang": "tr",
+      "weight": 500
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "role": "headline",
+      "text": "Önce eleyin, sonra 80 °C su, en son zikzak çırpın.",
+      "font": "brand.display",
+      "size": 104,
+      "line_height": 1.02,
+      "grid": {
+        "col": 1,
+        "span": 6,
+        "row": 4,
+        "row_span": 6
+      },
+      "color": "brand.ink_inverse",
+      "lang": "tr",
+      "weight": 500
+    },
+    {
+      "id": "rule",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.cream",
+      "box": {
+        "x": 64,
+        "y": 1290,
+        "w": 240,
+        "h": 6
+      }
+    },
+    {
+      "id": "cta",
+      "type": "text",
+      "role": "cta",
+      "text": "Kase ve çırpıcı için profile göz at",
+      "font": "brand.text",
+      "size": 40,
+      "grid": {
+        "col": 1,
+        "span": 5,
+        "row": 12,
+        "row_span": 2
+      },
+      "color": "brand.cream",
+      "lang": "tr"
+    }
   ],
-  "provenance": { "assets": [] }
+  "provenance": {
+    "assets": []
+  }
 }

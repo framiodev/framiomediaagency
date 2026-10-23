@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import opentype from 'opentype.js';
+import * as fontkit from 'fontkit';
 
 // Turkish letters plus the basic Latin needed for any Turkish copy.
 export const TURKISH_CHARS = 'ğĞşŞıİöÖüÜçÇâÂîÎûÛ';
@@ -7,21 +7,19 @@ export const BASIC_CHARS =
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,:;!?\'"()-–—%&@';
 
 /**
- * @param {opentype.Font} font
+ * @param {object} font - a fontkit font
  * @param {string} chars
- * @returns {string[]} characters with no glyph (mapped to .notdef)
+ * @returns {string[]} characters the font has no glyph for
  */
 export function missingGlyphs(font, chars = TURKISH_CHARS + BASIC_CHARS) {
-  return [...new Set(chars)].filter((c) => font.charToGlyphIndex(c) === 0);
+  return [...new Set(chars)].filter((c) => !font.hasGlyphForCodePoint(c.codePointAt(0)));
 }
 
 /**
- * @param {string} path - .ttf, .otf or .woff file (woff2 is not supported)
+ * @param {string} path - .ttf, .otf, .woff or .woff2 file
  * @returns {{family: string, missing: string[]}}
  */
 export function checkFontFile(path, chars) {
-  const buf = readFileSync(path);
-  const font = opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
-  const family = font.names.fontFamily?.en ?? '';
-  return { family, missing: missingGlyphs(font, chars) };
+  const font = fontkit.create(readFileSync(path));
+  return { family: font.familyName ?? '', missing: missingGlyphs(font, chars) };
 }

@@ -16,6 +16,7 @@ npm run check          # lint + test
 npm run validate -- examples/specs/valid/post-4x5-concept.json
 npm run brand -- brands/dk_koksallar/brand-kit.json
 node src/cli.js glyphs path/to/font.ttf   # Türkçe glif denetimi
+node src/cli.js render examples/specs/valid/dk-post-4x5-route.json   # out/ altına PNG
 ```
 `validate` geçerli dosyada `✓` yazar ve 0 ile çıkar; geçersiz dosyada hataları yol (`/layers/2/grid` gibi) ile listeler ve 1 ile çıkar.
 
@@ -24,12 +25,13 @@ node src/cli.js glyphs path/to/font.ttf   # Türkçe glif denetimi
 |---|---|
 | `schemas/design-spec-0.1.schema.json` | Tasarım spec'i (JSON Schema 2020-12) |
 | `src/spec/validate.js` | Doğrulayıcı: şema + şemanın ifade edemediği kurallar |
-| `src/cli.js` | `ajans validate` komutu |
-| `examples/specs/valid/` | Geçerli örnekler (3 adet) |
+| `src/cli.js` | `ajans` komutları: validate, brand, glyphs, render |
+| `examples/specs/valid/` | Geçerli örnekler (4 adet; 3ü pilot markalarla render edilir) |
 | `examples/specs/invalid/` | Reddedilmesi gereken örnekler |
 | `schemas/brand-kit-0.1.schema.json` | Marka kiti şeması (renk, font, logo, ton, kaynak) |
 | `src/brand/` | Marka kiti doğrulayıcı ve Türkçe glif denetimi |
 | `brands/` | Pilot marka kitleri (bkz. brands/README.md) |
+| `src/render/` | Renderer: spec → SVG (metin eğri olarak) → PNG; bkz. docs/adr/0002-renderer.md |
 | `docs/adr/` | Mimari karar kayıtları |
 
 ## Tasarım spec'i (v0.1)

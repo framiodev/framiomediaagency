@@ -58,7 +58,7 @@
           "files": {
             "description": "Paths relative to the kit file. Font files are client assets and stay out of git.",
             "type": "array",
-            "items": { "type": "string", "pattern": "\\.(ttf|otf|woff)$" }
+            "items": { "type": "string", "pattern": "\\.(ttf|otf|woff2?)$" }
           },
           "weights": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 } },
           "asset_id": { "type": "string", "minLength": 1 }
