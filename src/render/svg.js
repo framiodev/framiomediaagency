@@ -25,7 +25,7 @@ export function loadBrand(brandsDir, brandId) {
   return { kit, dir, fonts };
 }
 
-function color(value, brand) {
+export function color(value, brand) {
   let hex = value;
   if (value.startsWith('brand.')) {
     const def = brand.kit.colors[value.slice(6)];
@@ -37,7 +37,7 @@ function color(value, brand) {
 }
 
 /** Converts a grid placement or box into pixel coordinates. */
-function frame(layer, spec) {
+export function frame(layer, spec) {
   if (layer.box) return layer.box;
   const { w: W, h: H } = spec.canvas;
   if (!layer.grid) return { x: 0, y: 0, w: W, h: H };

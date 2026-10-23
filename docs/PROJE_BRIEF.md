@@ -1,10 +1,12 @@
 # Ajans İşletim Sistemi — Proje Brief'i (Claude Code devir dokümanı)
 
-Sürüm: 0.2 · Tarih: 2026-10-23 · Dil: Türkçe · Durum: Faz 0 başlamadan önce
+Sürüm: 0.3 · Tarih: 2026-10-23 · Dil: Türkçe · Durum: Faz 0 sürüyor (F0-1 – F0-5 tamam)
 
 Bu doküman, bir sohbet oturumunda yapılan planlama ve araştırmanın özetidir. Claude Code ile geliştirmeye başlarken tek kaynak olarak kullanılır. "Doğrula" işaretli maddeler kaynaktan teyit edilmemiş varsayımlardır; kod yazmadan önce kontrol edilmelidir.
 
 v0.2'de değişenler: donanım ve geliştirme ortamı (Bölüm 3a), referans ajanslar ve pilot markalar (Bölüm 8a), Faz 0 görevleri (Bölüm 11), açık sorular (Bölüm 14).
+
+v0.3'te değişenler: ürün tanımı "tüm Adobe uygulamalarına ve kullanıcının Rust uygulamalarına bağlı profesyonel tasarım aracı" olarak netleşti (Bölüm 1, 2); yazılım envanteri tüm ajans araçlarını kapsayacak şekilde genişledi (Bölüm 4a); spec'e işlem katmanı eklendi (Bölüm 5a, ADR 0003); F0-12 Adobe fizibilitesi eklendi (Bölüm 11); yol haritası Adobe entegrasyonunu öne çekti (Bölüm 12).
 
 ---
 
@@ -24,11 +26,11 @@ Kapsam (kademeli):
 
 | Konu | Karar |
 |---|---|
-| Ürün biçimi | Bağımsız program; Windows, macOS, Android |
+| Ürün biçimi | Bağımsız program; Windows, macOS, Android. Canva tarzı şablon aracı değil: tüm Adobe uygulamalarının ve kullanıcının Rust uygulamalarının yeteneklerini ajanlara açan profesyonel tasarım aracı (v0.3) |
 | Sahiplik | Önce kullanıcının kendi ajansının aracı; ileride sistem olarak satılabilir yapı |
 | Altyapı | Bulut tabanlı çekirdek; telefon, tablet, PC'den kesintisiz erişim |
 | Evdeki makine | Casper Excalibur G870 (dizüstü), Windows 11, RTX 4070; sürekli açık kalabilir; "işçi" (worker) olarak kullanılacak |
-| Başlangıç motorları | Önce Adobe uygulamaları + açık kaynak araçlar; sonra kullanıcının kendi Rust motoru |
+| Başlangıç motorları | Önce Adobe uygulamaları (Creative Cloud Tüm Uygulamalar) + açık kaynak araçlar; sonra kullanıcının kendi Rust motoru. Envanter: Bölüm 4a |
 | Otonomluk | Başta her şey onaya gelir; öğrenme ve güvenle artar |
 | Bütçe | API için "çok ciddi para" ödenmeyecek. Referans: şu an Adobe'ye aylık ~1.700 (TL olduğu varsayıldı, doğrula) ödeniyor; benzer aralık hedeflendi |
 | Satış niyeti | BYOK, çok kiracılı veri modeli ve lisans denetimi baştan düşünülmeli |
@@ -110,6 +112,43 @@ Her eklenti: manifest (yetenekler, platform, izinler) + ayrı süreç + ortak i�
 
 Genel kural: Bir repoyu eklemeden önce lisans, bakım durumu ve kod güvenliği kontrol edilir (çoğunun yıldız sayısı düşük). Çok sayıda skill yüklemek ajanı yavaşlatıp bulandırabilir; önce 8-10 araçlık çekirdek set.
 
+## 4a. Ajans yazılım envanteri (YENİ, v0.3)
+
+Hedef: Canva benzeri tek motorlu bir şablon aracı değil; profesyonel bir ajansın kullandığı programların **tüm yeteneklerini** ajanlara açan bir eklenti/işçi katmanı. Her program bir **motor eklentisidir**: manifestinde hangi işlemleri yapabildiğini ilan eder (Bölüm 5a), spec'teki işlemleri yapabilecek motora yönlendirilir.
+
+Kullanıcının lisansı: **Adobe Creative Cloud Tüm Uygulamalar**. Evdeki dizüstünde kurulu (2026-10-23 kontrol): Photoshop 2026 (27.11), Premiere Pro 2026, After Effects 2026, Media Encoder 2026, Lightroom CC, Acrobat. **Illustrator kullanıcı "kurulu" dese de diskte ve kayıt defterinde bulunamadı** (doğrula / yeniden kur).
+
+Otomasyon yolları (UXP: Adobe'nin modern eklenti platformu, V8/ES6; ExtendScript: eski ES3 betik dili; CEP: eski HTML panel platformu; COM: Windows otomasyon arayüzü):
+
+| Program | Ajans işi | Otomasyon yolu | Durum |
+|---|---|---|---|
+| **Photoshop** | Kompozit, rötuş, dekupe (Select Subject), ışık, mockup, generative fill/expand | UXP (ana), ExtendScript + COM (Windows) | **F0-12'de çalıştı**: COM + ExtendScript ile spec'ten katmanlı PSD, ~3-6 sn |
+| **Illustrator** | Logo yeniden çizimi/vektörleştirme, ikon, desen, infografik, ambalaj | ExtendScript (+ COM), CEP. **Genel UXP yok** (2026 itibarıyla "yakında"; üçüncü taraf kaynak) | Makinede kurulu değil; doğrula |
+| **InDesign** | Broşür, katalog, menü, sunum, çok sayfalı belge, veri birleştirme | UXP, ExtendScript | Kurulmadı |
+| **After Effects** | Hareketli grafik, kinetik tipografi, logo animasyonu, reels şablonları | ExtendScript (+ `AfterFX.exe -r`), `aerender` CLI. **UXP yok** | F0-12'de betik çalışmadı (dosya yazma tercihi kapalı olabilir; doğrula) |
+| **Premiere Pro** | Reels/kurgu, altyazı, yeniden boyutlandırma | UXP (25.x+), ExtendScript/CEP. ExtendScript'in Eylül 2026'da biteceği iddiası var (kullanıcı forumu, doğrula) | UXP eklentisi gerekir; denenmedi |
+| **Media Encoder** | Toplu dışa aktarım, kodlama | ExtendScript, izlenen klasörler | Kurulu |
+| **Lightroom (CC)** | Fotoğraf renk düzeltme, preset | Masaüstünde betik yok. Bulut: Lightroom API (Firefly Services), preset/XMP uygulama | Firefly Services kurumsal sözleşme istiyor (üçüncü taraf kaynak, doğrula). Alternatif: Photoshop Camera Raw filtresi (XMP preset) |
+| **Lightroom Classic** | Toplu fotoğraf işleme | Lua SDK | Kurulu değil; gerekirse eklenir |
+| Firefly / Firefly Services | Görsel üretimi, genişletme, dekupe API'leri | REST | Kurumsal; tek kişilik ajans için büyük olasılıkla kapalı. Photoshop içindeki generative özellikler CC kredisiyle çalışır |
+| Adobe Stock | Lisanslı fotoğraf/vektör | API + Photoshop/Illustrator içi | Lisanslar envantere işlenir |
+| Adobe Fonts | Marka fontları | CC uygulaması üzerinden etkinleştirme | Font lisansı provenance'a yazılır |
+| Adobe Express, Acrobat, Bridge, Audition, Substance 3D | Hızlı varyasyon, PDF teklif/sunum, varlık yönetimi, ses, 3B malzeme | Değişken | İhtiyaca göre |
+| Frame.io | Müşteri onayı, video yorumları | REST API | Onay panosu ile bütünleşebilir |
+| Figma | Sunum, sosyal şablon, müşteri işbirliği | REST API, eklenti API'si, MCP | Hesap gerekirse |
+| Blender | 3B ürün/ambalaj görseli | Python API, CLI render | Açık kaynak (GPL, ayrı süreç) |
+| DaVinci Resolve | Renk düzenleme, kurgu | Python/Lua betik API (Studio sürümünde tam) | İsteğe bağlı |
+| Inkscape | Vektör yedeği, SVG dönüştürme | CLI | GPL, ayrı süreç |
+| vtracer / potrace | Raster → vektör (logo yeniden çizimi için ilk taslak) | CLI / kütüphane | vtracer MIT (Rust); potrace GPL |
+| rembg, Real-ESRGAN | Dekupe, çözünürlük artırma (Adobe'siz yedek) | Python CLI | MIT / BSD; GPU'da hızlı |
+| ComfyUI | Yerel görsel üretim | HTTP API | Bölüm 3a, F0-11 |
+| FFmpeg, Remotion, Lottie | Video işleme, kodla hareketli grafik, web animasyonu | CLI / Node | Bölüm 4 |
+| Kullanıcının Rust uygulamaları | Kendi render ve işleme motorları | Spec + eklenti protokolü | Faz 5; protokol Faz 1'de sabitlenir |
+
+Dikkat:
+- **Adobe kullanım şartları:** masaüstü uygulamalarını otomasyonla, kullanıcının kendi lisansıyla, kendi işleri için çalıştırmak normal kullanım. Programı satarken her kullanıcı kendi Adobe lisansını kullanır (BYOL); bulutta Adobe masaüstü çalıştırmak lisansa aykırı olabilir (doğrula).
+- **Tek bağımlılık yok:** her Adobe işleminin açık kaynak bir yedeği olmalı (tabloda). Adobe yoksa sistem daha düşük kalitede çalışmaya devam eder.
+
 ## 5. Tasarım spec formatı (taslak v0.1)
 
 Sürümlü, JSON Schema ile doğrulanan bir belge. Ajanlar bunu üretir, renderer'lar tüketir.
@@ -137,6 +176,15 @@ Sürümlü, JSON Schema ile doğrulanan bir belge. Ajanlar bunu üretir, rendere
 ```
 
 Gereksinimler: sürümleme ve diff, deterministik render, her varlık için kaynak ve lisans kaydı, Türkçe karakter (ğ, ş, ı, İ, ö, ü, ç) destekleyen font doğrulaması.
+
+## 5a. İşlem katmanı (YENİ, v0.3; ADR 0003)
+
+v0.1 spec yalnızca **son kompozisyonu** tarif eder. Ajans işi ise önce varlıkları hazırlar: logoyu vektöre çevirir, fotoğrafı dekupe eder, ışığı düzeltir, ürünü sahneye yerleştirir. Spec v0.2 iki katmanlı olur:
+
+1. **operations**: varlık hazırlama işlemlerinin yönlü grafiği. Her işlemin girdisi, çıktısı (`asset://`), parametreleri ve **gerekli yeteneği** vardır (ör. `vectorize`, `remove_background`, `upscale`, `relight`, `generative_fill`, `color_grade`, `mockup_place`, `animate`). Motor seçimi spec'te değil, yönlendiricidedir.
+2. **composition**: bugünkü katmanlar, zenginleştirilmiş görsel söz dağarcığıyla: zengin metin (satır içi renk/kalınlık), maske ve kırpma, gradyan, gölge/efekt, karışım modu, döndürme, gruplar, doku/desen.
+
+Her motor eklentisi manifestinde desteklediği işlemleri ve kompozisyon özelliklerini ilan eder. Yönlendirici her işlemi en iyi uygun motora verir (ör. vectorize → Illustrator, yoksa vtracer). Kompozisyon da bir motora gider: Photoshop (katmanlı PSD), resvg (hızlı önizleme), ileride Rust motoru. Desteklenmeyen özellik sessizce düşürülmez; uyarı veya hata olur.
 
 ## 6. Tasarım rubriği (taslak)
 
@@ -271,6 +319,7 @@ Hedef: Arayüz yok; komut satırında "brief → spec → yerel render → eleş
 | F0-9 | Referans ajanslardan (ESG Dijital, Zemberenk Medya) **marka bazlı** stil kartı çıkarma; kullanıcı bağlantı/ekran görüntüsü verir | Ajans→marka→sektör tablosu; 10-15 örnek kart; her kartta "neden iyi?" notu |
 | F0-10 | Faz 0 raporu ve Faz 1 kararları (API dili, render seçimi) | Karar kayıtları (ADR) yazılır |
 | F0-11 | **GPU ölçümü** (Casper dizüstü): VRAM, ComfyUI SDXL süresi, küçük yerel vision modeli hızı, sürekli çalışma sıcaklığı | Ölçüm raporu; yerel/bulut iş dağılımı kararı |
+| F0-12 | **Adobe fizibilitesi** (YENİ): aynı spec'ten Photoshop'ta katmanlı PSD; logo büyütme/vektörleştirme; After Effects, Premiere, Lightroom, Illustrator otomasyon yollarının denenmesi | Her program için çalışan/çalışmayan işlemler, süre ve kırılganlık raporu (docs/reports/f0-12-adobe.md); işlem katmanı için ADR |
 
 Faz 0 bitmeden arayüze geçilmez. Kalite kanıtı pilot markalar için körleme karşılaştırmayla (şablon çıktısına karşı) doğrulanır; pilot çalışmalar yayınlanmaz (Bölüm 8a).
 
@@ -278,9 +327,9 @@ Faz 0 bitmeden arayüze geçilmez. Kalite kanıtı pilot markalar için körleme
 
 | Faz | Süre (kaba) | İçerik |
 |---|---|---|
-| 0 | 1-2 hafta | Yukarıdaki görev listesi |
-| 1 | 5-7 hafta | Tauri istemcisi (Windows), bulut API, marka kiti, onay panosu, not defteri, tek motor; CI'da macOS derlemesi |
-| 2 | 4-6 hafta | Eklenti sistemi + MCP istemcisi, FFmpeg/Remotion, ComfyUI, Adobe işçisi (Windows dizüstü), Android istemci |
+| 0 | 2-3 hafta | Yukarıdaki görev listesi (F0-12 dahil) |
+| 1 | 6-8 hafta | Spec v0.2 (işlem + zengin kompozisyon), motor eklenti protokolü, **Photoshop motoru** (UXP), Tauri istemcisi (Windows), bulut API, marka kiti, onay panosu; CI'da macOS derlemesi |
+| 2 | 5-7 hafta | MCP istemcisi, Illustrator, After Effects, InDesign, Premiere motorları; FFmpeg/Remotion, ComfyUI; açık kaynak yedek motorlar; Android istemci |
 | 3 | 4-6 hafta | Referans kütüphanesi, stil kartları, zevk hafızası, planlayıcı, Postiz yayın, video sağlayıcı eklentisi |
 | 4 | Sürekli | SEO, sektör araştırması, SWOT, teklif şablonları, lead takibi, web sitesi üretimi |
 | 5 | Sürekli | Rust motorunu render eklentisi olarak bağlama |
@@ -307,6 +356,9 @@ Süreler tek geliştirici + yapay zekâ destekli kodlama varsayımıyla kabadır
 6. Adobe fiyatının para birimi ve güncel kur (bütçe tavanı için).
 7. Program açık kaynak mı olacak, kapalı mı? (Eklenti lisanslarını etkiler.)
 8. Claude Code kullanım maliyeti bütçeye nasıl yansıyacak (plan mı, API anahtarı mı)?
+9. **(v0.3)** Illustrator diskte bulunamadı; Creative Cloud’dan kurulabilir mi?
+10. **(v0.3)** After Effects’te “Betiklerin dosya yazmasına izin ver” tercihi açılabilir mi?
+11. **(v0.3)** Marka fontları (Inter, League Spartan; OFL) işçi makineye kurulsun mu?
 
 ## 15. Kaynaklar
 
