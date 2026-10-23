@@ -11,7 +11,7 @@
     "w": 1080,
     "h": 1920,
     "unit": "px",
-    "background": "brand.sky",
+    "background": "brand.cocoa",
     "safe_area": {
       "top": 250,
       "bottom": 340,
@@ -40,7 +40,7 @@
         "span": 6,
         "row": 3
       },
-      "color": "brand.ink_inverse",
+      "color": "brand.butter",
       "lang": "tr",
       "weight": 500
     },
@@ -58,7 +58,7 @@
         "row": 4,
         "row_span": 6
       },
-      "color": "brand.ink_inverse",
+      "color": "brand.cream",
       "lang": "tr",
       "weight": 500
     },
@@ -66,7 +66,7 @@
       "id": "rule",
       "type": "shape",
       "shape": "rect",
-      "fill": "brand.cream",
+      "fill": "brand.sky",
       "box": {
         "x": 64,
         "y": 1290,

@@ -35,7 +35,7 @@
       "grid": {
         "col": 1,
         "span": 12,
-        "row": 1,
+        "row": 2,
         "row_span": 2
       },
       "radius": 16
@@ -48,7 +48,7 @@
       "grid": {
         "col": 2,
         "span": 10,
-        "row": 1,
+        "row": 2,
         "row_span": 2
       }
     },
@@ -58,14 +58,14 @@
       "role": "label",
       "text": "HER GECE 22:30",
       "font": "brand.text",
-      "size": 30,
+      "size": 44,
       "tracking": 0.14,
       "grid": {
         "col": 1,
         "span": 12,
-        "row": 4
+        "row": 5
       },
-      "color": "brand.sky",
+      "color": "brand.ink_inverse",
       "lang": "tr",
       "weight": 600
     },
@@ -75,12 +75,12 @@
       "role": "headline",
       "text": "Mersin\nİstanbul",
       "font": "brand.display",
-      "size": 150,
+      "size": 128,
       "line_height": 0.98,
       "grid": {
         "col": 1,
         "span": 12,
-        "row": 5,
+        "row": 6,
         "row_span": 3
       },
       "color": "brand.ink_inverse",
@@ -94,7 +94,7 @@
       "fill": "brand.accent",
       "box": {
         "x": 72,
-        "y": 950,
+        "y": 874,
         "w": 160,
         "h": 10
       }
@@ -110,7 +110,7 @@
       "grid": {
         "col": 1,
         "span": 9,
-        "row": 10,
+        "row": 9,
         "row_span": 2
       },
       "color": "brand.ink_inverse",
@@ -122,13 +122,13 @@
       "role": "cta",
       "text": "dkkoksallar.com",
       "font": "brand.text",
-      "size": 34,
+      "size": 40,
       "grid": {
         "col": 1,
         "span": 8,
-        "row": 12
+        "row": 11
       },
-      "color": "brand.sky",
+      "color": "brand.ink_inverse",
       "lang": "tr",
       "weight": 600
     }

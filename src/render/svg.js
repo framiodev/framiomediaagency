@@ -53,7 +53,7 @@ function frame(layer, spec) {
   };
 }
 
-function renderText(layer, spec, brand, warnings) {
+function renderText(layer, spec, brand, warnings, layout) {
   const family = brand.fonts.get(layer.font.slice(6));
   if (!family) throw new Error(`font ${layer.font} has no loadable file in brand ${brand.kit.brand_id}`);
   const size = layer.size;
@@ -61,19 +61,47 @@ function renderText(layer, spec, brand, warnings) {
   if (note) warnings.push(`${layer.id}: ${note}`);
   const missing = missingChars(f, layer.text);
   if (missing.length) warnings.push(`${layer.id}: no glyph for ${missing.join(' ')}`);
-  const { x, y, w } = frame(layer, spec);
+  const fr = frame(layer, spec);
+  const { x, y, w } = fr;
   const tracking = layer.tracking ?? 0;
   const lh = size * (layer.line_height ?? 1.2);
   const ascent = (f.ascent / f.unitsPerEm) * size;
   const { fill, opacity } = color(layer.color, brand);
+  const descent = (-f.descent / f.unitsPerEm) * size;
+  const lines = wrap(f, layer.text, size, tracking, w);
   let d = '';
-  wrap(f, layer.text, size, tracking, w).forEach((line, i) => {
+  let left = Infinity;
+  let right = -Infinity;
+  lines.forEach((line, i) => {
     const lw = lineWidth(f, line, size, tracking);
-    if (lw > w + 0.5) warnings.push(`${layer.id}: word wider than its frame ('${line}')`);
+    if (lw > w + 0.5) warnings.push(`${layer.id}: word wider than its frame ("${line}")`);
     const dx = layer.align === 'center' ? (w - lw) / 2 : layer.align === 'right' ? w - lw : 0;
+    left = Math.min(left, x + dx);
+    right = Math.max(right, x + dx + lw);
     d += linePath(f, line, x + dx, y + ascent + i * lh, size, tracking);
   });
+  layout.push({
+    id: layer.id, type: 'text', role: layer.role ?? null, frame: fr,
+    // Box from the top of the first line's ascent to the last line's descent.
+    ink: { x: left, y, w: right - left, h: ascent + (lines.length - 1) * lh + descent },
+    color: fill, opacity, size, weight: layer.weight ?? 400, lines: lines.length, missing,
+  });
   return `<path id="${esc(layer.id)}" d="${d}" fill="${fill}" fill-opacity="${opacity}"/>`;
+}
+
+/** Width and height from a PNG header; null for other formats. */
+function pngSize(buf) {
+  if (buf.subarray(1, 4).toString() !== 'PNG') return null;
+  return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+}
+
+/** The box an image with fit=contain actually covers inside its frame. */
+function containBox(fr, size) {
+  if (!size) return fr;
+  const s = Math.min(fr.w / size.w, fr.h / size.h);
+  const w = size.w * s;
+  const h = size.h * s;
+  return { x: fr.x + (fr.w - w) / 2, y: fr.y + (fr.h - h) / 2, w, h };
 }
 
 /** Finds the file for asset://<id> under the brand's assets folder. */
@@ -87,11 +115,14 @@ function findAsset(brand, id) {
   return hit ? join(dir, hit) : null;
 }
 
-function renderImage(layer, spec, brand, warnings, defs) {
-  const { x, y, w, h } = frame(layer, spec);
+function renderImage(layer, spec, brand, warnings, defs, layout) {
+  const fr = frame(layer, spec);
+  const { x, y, w, h } = fr;
   const id = layer.src.slice('asset://'.length);
   const file = findAsset(brand, id);
   const op = layer.opacity ?? 1;
+  const entry = { id: layer.id, type: 'image', frame: fr, ink: fr, fit: layer.fit, asset: id, found: Boolean(file) };
+  layout.push(entry);
   if (!file) {
     // Visible placeholder so a missing asset is never silently dropped.
     warnings.push(`${layer.id}: asset "${id}" not found, placeholder drawn`);
@@ -99,7 +130,9 @@ function renderImage(layer, spec, brand, warnings, defs) {
       `<path d="M${n(x)} ${n(y)}L${n(x + w)} ${n(y + h)}M${n(x + w)} ${n(y)}L${n(x)} ${n(y + h)}" stroke="#6B7075" stroke-width="4"/></g>`;
   }
   const mime = IMAGE_MIME[extname(file).toLowerCase()];
-  const data = readFileSync(file).toString('base64');
+  const bytes = readFileSync(file);
+  if (layer.fit === 'contain') entry.ink = containBox(fr, pngSize(bytes));
+  const data = bytes.toString('base64');
   const par = { cover: 'xMidYMid slice', contain: 'xMidYMid meet', fill: 'none' }[layer.fit];
   const clip = `clip-${layer.id}`;
   defs.push(`<clipPath id="${esc(clip)}"><rect x="${n(x)}" y="${n(y)}" width="${n(w)}" height="${n(h)}"/></clipPath>`);
@@ -107,10 +140,12 @@ function renderImage(layer, spec, brand, warnings, defs) {
     `clip-path="url(#${esc(clip)})" opacity="${op}" href="data:${mime};base64,${data}"/>`;
 }
 
-function renderShape(layer, spec, brand) {
-  const { x, y, w, h } = frame(layer, spec);
+function renderShape(layer, spec, brand, layout) {
+  const fr = frame(layer, spec);
+  const { x, y, w, h } = fr;
   const { fill, opacity } = color(layer.fill, brand);
   const op = n(opacity * (layer.opacity ?? 1));
+  layout.push({ id: layer.id, type: 'shape', shape: layer.shape, frame: fr, ink: fr, color: fill, opacity: op });
   const attrs = `id="${esc(layer.id)}" fill="${fill}" fill-opacity="${op}"`;
   if (layer.shape === 'ellipse') {
     return `<ellipse ${attrs} cx="${n(x + w / 2)}" cy="${n(y + h / 2)}" rx="${n(w / 2)}" ry="${n(h / 2)}"/>`;
@@ -121,17 +156,18 @@ function renderShape(layer, spec, brand) {
 /**
  * @param {object} spec - a validated design spec
  * @param {{brandsDir: string}} opts
- * @returns {{svg: string, warnings: string[]}}
+ * @returns {{svg: string, warnings: string[], layout: object[], background: string}}
  */
 export function specToSvg(spec, { brandsDir }) {
   const brand = loadBrand(brandsDir, spec.brand_ref);
   const warnings = [];
   const defs = [];
+  const layout = [];
   const { w, h } = spec.canvas;
   const body = spec.layers.map((layer) => {
-    if (layer.type === 'text') return renderText(layer, spec, brand, warnings);
-    if (layer.type === 'image') return renderImage(layer, spec, brand, warnings, defs);
-    return renderShape(layer, spec, brand);
+    if (layer.type === 'text') return renderText(layer, spec, brand, warnings, layout);
+    if (layer.type === 'image') return renderImage(layer, spec, brand, warnings, defs, layout);
+    return renderShape(layer, spec, brand, layout);
   });
   const bg = spec.canvas.background ? color(spec.canvas.background, brand) : { fill: '#FFFFFF', opacity: 1 };
   const svg =
@@ -140,5 +176,5 @@ export function specToSvg(spec, { brandsDir }) {
     `<rect width="${w}" height="${h}" fill="${bg.fill}" fill-opacity="${bg.opacity}"/>` +
     body.join('') +
     '</svg>';
-  return { svg, warnings };
+  return { svg, warnings, layout, background: bg.fill };
 }

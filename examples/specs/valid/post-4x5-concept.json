@@ -45,14 +45,14 @@
       "role": "label",
       "text": "KONSEPT ÇALIŞMASI · ÇAYYOLU",
       "font": "brand.text",
-      "size": 24,
+      "size": 40,
       "tracking": 0.12,
       "grid": {
         "col": 1,
         "span": 12,
         "row": 8
       },
-      "color": "brand.sky",
+      "color": "brand.cocoa",
       "lang": "tr",
       "weight": 500
     },
@@ -97,7 +97,7 @@
       "grid": {
         "col": 9,
         "span": 4,
-        "row": 11,
+        "row": 10,
         "row_span": 2
       }
     }

@@ -1,0 +1,29 @@
+{
+  "$comment": "Thresholds for the deterministic rubric checks (docs/PROJE_BRIEF.md section 6). Sizes are converted to how the post is seen on a phone: canvas px × display_width_px / canvas width.",
+  "display_width_px": 375,
+  "contrast": {
+    "normal": 4.5,
+    "large": 3.0,
+    "percentile": 10
+  },
+  "large_text": {
+    "min_px": 24,
+    "bold_min_px": 18.66,
+    "bold_weight": 700
+  },
+  "min_text_px": 11,
+  "overlap_tolerance_px": 2,
+  "unknown_licenses": ["tbd", "unknown", "?", ""],
+  "severity": {
+    "contrast_low": "critical",
+    "missing_glyph": "critical",
+    "safe_area_violation": "critical",
+    "text_overlap": "critical",
+    "asset_missing": "critical",
+    "license_unknown": "critical",
+    "text_partial_overlap": "major",
+    "text_overflow": "major",
+    "text_too_small": "major",
+    "off_palette": "minor"
+  }
+}

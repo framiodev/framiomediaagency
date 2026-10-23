@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join } from 'node:path';
 import { validateSpec } from './spec/validate.js';
 import { renderSpec } from './render/png.js';
+import { checkSpec } from './rubric/checks.js';
 import { validateBrandKitFile } from './brand/validate.js';
 import { checkFontFile } from './brand/glyphs.js';
 
@@ -10,7 +11,8 @@ const USAGE = `Usage:
   ajans validate <spec.json> [...]      validate design specs
   ajans brand <brand-kit.json> [...]    validate brand kits (incl. font glyphs)
   ajans glyphs <font.ttf|otf|woff|woff2> [...] check Turkish glyph coverage
-  ajans render <spec.json> [-o out.png] [--brands dir]   render a spec to PNG`;
+  ajans render <spec.json> [-o out.png] [--brands dir]   render a spec to PNG
+  ajans check <spec.json> [...] [--brands dir] [--json]   deterministic rubric checks`;
 
 const commands = {
   validate: (file) => validateSpec(JSON.parse(readFileSync(file, 'utf8'))),
@@ -50,6 +52,35 @@ if (command === 'render') {
     console.error(`✗ ${file}: ${err.message}`);
     process.exit(1);
   }
+}
+
+if (command === 'check') {
+  // ajans check <spec.json> [...] [--brands dir] [--json]
+  const json = files.includes('--json');
+  const args = files.filter((f) => f !== '--json');
+  const i = args.indexOf('--brands');
+  const brandsDir = i === -1 ? 'brands' : args.splice(i, 2)[1];
+  if (args.length === 0) {
+    console.error(USAGE);
+    process.exit(2);
+  }
+  let failed = 0;
+  for (const file of args) {
+    try {
+      const result = checkSpec(JSON.parse(readFileSync(file, 'utf8')), { brandsDir });
+      if (!result.passed) failed++;
+      if (json) {
+        console.log(JSON.stringify({ file, ...result }, null, 2));
+        continue;
+      }
+      console.log(`${result.passed ? '✓' : '✗'} ${file}`);
+      for (const f of result.failures) console.log(`    [${f.severity}] ${f.code} ${f.layer}: ${f.detail}`);
+    } catch (err) {
+      console.error(`✗ ${file}: ${err.message}`);
+      failed++;
+    }
+  }
+  process.exit(failed ? 1 : 0);
 }
 
 const run = commands[command];
