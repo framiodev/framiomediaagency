@@ -1,0 +1,23 @@
+{
+  "kit_version": "0.1",
+  "brand_id": "pilot_b_cafe",
+  "tenant_id": "framio",
+  "name": "Pilot B — Çayyolu kafe/restoran (henüz seçilmedi)",
+  "status": "needs_input",
+  "label": "concept_study",
+  "pilot": true,
+  "sector": "Kafe / restoran",
+  "location": "Çayyolu, Ankara",
+  "links": [],
+  "colors": {},
+  "fonts": {},
+  "logos": [],
+  "tone": { "voice": null, "address": null, "do": [], "dont": [], "sample": null },
+  "provenance": { "assets": [] },
+  "open_questions": [
+    "Hangi işletme? Adaylar: Whisk (öneri, whiskandmore.com), Luma Çayyolu (lumacayyolu.com), Noon Coffee & Shop (nooncoffeeshop.com). (madde 4)",
+    "Seçilen işletmenin Instagram hesabı ve 10-15 örnek gönderisi (bağlantı veya ekran görüntüsü)",
+    "Logo, renkler ve fontlar: kullanıcının verdiği veya halka açık kaynaktan; her biri için kaynak ve lisans"
+  ],
+  "notes": "Gerçek ve izinsiz bir işletme. Çıktılar konsept çalışmasıdır, yayınlanmaz. Seçim yapılınca brand_id işletmeye göre yeniden adlandırılabilir (örnek spec'ler şimdilik pilot_b_cafe kullanıyor)."
+}

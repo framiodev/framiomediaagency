@@ -7,3 +7,6 @@ out/
 # Client files and credentials never enter the repo (CLAUDE.md)
 clients/
 secrets/
+
+# Brand assets (logos, fonts) are client files
+brands/*/assets/

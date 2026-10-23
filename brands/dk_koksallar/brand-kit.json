@@ -1,0 +1,27 @@
+{
+  "kit_version": "0.1",
+  "brand_id": "dk_koksallar",
+  "tenant_id": "framio",
+  "name": "DK Köksallar",
+  "status": "needs_input",
+  "label": "concept_study",
+  "pilot": true,
+  "sector": null,
+  "location": null,
+  "links": [],
+  "colors": {},
+  "fonts": {},
+  "logos": [],
+  "tone": { "voice": null, "address": null, "do": [], "dont": [], "sample": null },
+  "provenance": { "assets": [] },
+  "open_questions": [
+    "Sektör nedir? (brief Bölüm 14, madde 1)",
+    "Instagram ve web adresleri nelerdir?",
+    "Logo dosyası (tercihen SVG) ve kaynağı nedir?",
+    "Marka renkleri (hex) ve kaynağı nedir?",
+    "Kullanılan fontlar ve lisansları nelerdir? Lisanslı fontlar tahmin edilmez.",
+    "Ses tonu: sen mi siz mi? Örnek gönderi metinleri?",
+    "ESG Dijital ile ilişki nedir (ilham, rakip, ortaklık)? (madde 3)"
+  ],
+  "notes": "ESG Dijital müşterisi. Yalnızca iç konsept/benchmark çalışması: yayınlanmaz, markaya veya ajansa gönderilmez, izinsiz portföyde kullanılmaz."
+}

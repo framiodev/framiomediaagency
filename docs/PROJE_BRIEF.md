@@ -103,6 +103,7 @@ Her eklenti: manifest (yetenekler, platform, izinler) + ayrı süreç + ortak i�
 | linebender/vello | Rust 2B çizim motoru | Her yerde | Alfa |
 | ajv (npm) | Spec JSON Schema doğrulama | Her yerde | MIT, aktif; F0-2 ile eklendi (bkz. docs/dependencies.md) |
 | eslint, @eslint/js, globals (npm) | Lint (yalnızca geliştirme) | Her yerde | MIT, aktif; F0-1 ile eklendi |
+| opentype.js (npm) | Font okuma, Türkçe glif denetimi | Her yerde | MIT, aktif; F0-3 ile eklendi |
 
 **REA (morluto/rea) hakkında:** Bu repo "Reverse Engineer Anything"tir; yazılım/binary analizi içindir, tasarım mantığıyla ilgisi yoktur. Ticari programları (Adobe) çözüp kopyalamak lisans/hukuk riskidir. Rust motoru için referans olarak kaynak kodu açık programlar (GIMP, Krita, Inkscape, darktable, RawTherapee) kullanılır.
 

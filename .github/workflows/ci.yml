@@ -20,3 +20,5 @@ jobs:
       - run: npm test
       - run: npm run validate -- examples/specs/valid/*.json
         shell: bash
+      - run: npm run brand -- brands/*/brand-kit.json
+        shell: bash

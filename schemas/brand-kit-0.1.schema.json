@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ajans-os.local/schemas/brand-kit-0.1.schema.json",
+  "title": "Brand kit v0.1",
+  "description": "Colors, fonts, logos and tone for one brand. Specs reference these by token (brand.<token>). See docs/PROJE_BRIEF.md F0-3.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kit_version", "brand_id", "tenant_id", "name", "status", "label", "colors", "fonts", "logos", "tone", "provenance"],
+  "properties": {
+    "kit_version": { "const": "0.1" },
+    "brand_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+    "tenant_id": { "type": "string", "minLength": 1 },
+    "name": { "type": "string", "minLength": 1 },
+    "status": {
+      "description": "needs_input: facts not yet supplied by the user; nothing may be guessed. ready: all checks must pass.",
+      "enum": ["needs_input", "draft", "ready"]
+    },
+    "label": { "enum": ["client_work", "concept_study", "internal"] },
+    "pilot": { "description": "Real brand used without permission; must be labelled concept_study and never published.", "type": "boolean" },
+    "sector": { "type": ["string", "null"] },
+    "location": { "type": ["string", "null"] },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "url"],
+        "properties": {
+          "kind": { "enum": ["website", "instagram", "facebook", "linkedin", "tiktok", "maps", "other"] },
+          "url": { "type": "string", "pattern": "^https://" },
+          "verified": { "type": "boolean" }
+        }
+      }
+    },
+    "colors": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/token" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["hex", "role", "source"],
+        "properties": {
+          "hex": { "type": "string", "pattern": "^#[0-9A-Fa-f]{6}$" },
+          "role": { "enum": ["ink", "ink_inverse", "paper", "primary", "secondary", "accent", "muted", "other"] },
+          "source": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "fonts": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/token" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["family", "files", "asset_id"],
+        "properties": {
+          "family": { "type": "string", "minLength": 1 },
+          "files": {
+            "description": "Paths relative to the kit file. Font files are client assets and stay out of git.",
+            "type": "array",
+            "items": { "type": "string", "pattern": "\\.(ttf|otf|woff)$" }
+          },
+          "weights": { "type": "array", "items": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 } },
+          "asset_id": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "logos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "variant", "file", "asset_id"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "variant": { "enum": ["primary", "mono", "inverse", "mark", "wordmark"] },
+          "file": { "type": "string" },
+          "min_width_px": { "type": "integer", "minimum": 1 },
+          "clear_space_ratio": { "type": "number", "minimum": 0 },
+          "asset_id": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "tone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["voice", "do", "dont"],
+      "properties": {
+        "voice": { "type": ["string", "null"] },
+        "address": { "enum": ["sen", "siz", null] },
+        "do": { "type": "array", "items": { "type": "string" } },
+        "dont": { "type": "array", "items": { "type": "string" } },
+        "sample": { "type": ["string", "null"] }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assets"],
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "source", "license"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "source": { "type": "string", "minLength": 1 },
+              "license": { "type": "string", "minLength": 1 },
+              "retrieved": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "open_questions": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "token": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" }
+  }
+}
