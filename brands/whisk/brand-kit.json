@@ -7,7 +7,7 @@
   "label": "concept_study",
   "pilot": true,
   "sector": "Matcha odaklı kafe; matcha ve ekipman e-ticareti, toptan satış",
-  "location": "Çayyolu, Ankara (Google Haritalar kaydına göre; şube listesi sitede boş)",
+  "location": "Ankaralılar Cd. No:21 D:30, Çayyolu, Ankara (Instagram profili, 2026-10-23)",
   "links": [
     {
       "kind": "website",
@@ -17,7 +17,7 @@
     {
       "kind": "instagram",
       "url": "https://www.instagram.com/whisk.more",
-      "verified": false
+      "verified": true
     }
   ],
   "colors": {
@@ -34,12 +34,12 @@
     "sky": {
       "hex": "#84ABD5",
       "role": "primary",
-      "source": "web sitesi CSS, 2026-10-23; logo wordmark rengiyle aynı, marka rengi olarak kabul edildi"
+      "source": "web sitesi CSS, 2026-10-23; logo wordmark rengiyle aynı, marka rengi olarak kabul edildi; Instagram gönderilerinde doğrulandı (2026-10-23)"
     },
     "cocoa": {
       "hex": "#5B3828",
       "role": "secondary",
-      "source": "web sitesi CSS, 2026-10-23"
+      "source": "web sitesi CSS, 2026-10-23; Instagram gönderilerinde doğrulandı (2026-10-23)"
     },
     "cream": {
       "hex": "#FFF1E2",
@@ -49,7 +49,7 @@
     "butter": {
       "hex": "#FAF6BC",
       "role": "accent",
-      "source": "web sitesi CSS ('Keşfet' düğmesi), 2026-10-23"
+      "source": "web sitesi CSS ('Keşfet' düğmesi), 2026-10-23; Instagram gönderilerinde doğrulandı (2026-10-23)"
     },
     "muted": {
       "hex": "#545454",
@@ -109,11 +109,20 @@
     }
   ],
   "tone": {
-    "voice": null,
-    "address": null,
-    "do": [],
-    "dont": [],
-    "sample": null
+    "voice": "Kısa, esprili, samimi; satış dili yok. Ağırlıkla İngilizce, \"whisk\" kelime oyunları. Slogan: Whisk up the day.",
+    "address": "sen",
+    "do": [
+      "Tek satırlık başlık + 1-2 emoji + 4-5 hashtag",
+      "Gerçek an ve tek ürün odaklı görsel",
+      "Grafik gönderilerde tek mesaj, geniş boşluk, büyük harf daktilo tipi",
+      "Logoyu ambalaj ve bardak gibi kalıcı öğelerde taşı"
+    ],
+    "dont": [
+      "Her görsele logo bandı veya iletişim şeridi ekleme",
+      "Kalabalık, çok öğeli kompozisyon",
+      "Agresif kampanya dili"
+    ],
+    "sample": "Slow mornings, fast whisks. 🩵"
   },
   "provenance": {
     "assets": [
@@ -134,9 +143,9 @@
     ]
   },
   "open_questions": [
-    "Instagram kazınmaz: whisk.more hesabından 10-15 örnek gönderinin bağlantısı veya ekran görüntüsü gerekli (ses tonu, fotoğraf dili, gerçek marka renkleri)",
-    "Sitedeki renkler e-ticaret temasından gelebilir; gönderilerde kullanılan renklerle karşılaştırılmalı",
-    "Çayyolu şubesi hâlâ açık mı? Sitedeki şube listesi boş"
+    "Grafik gönderilerdeki daktilo/monospace yazı tipinin adı ve lisansı nedir?",
+    "Konsept metinleri İngilizce mi, Türkçe mi, ikisi birden mi?",
+    "Gerçek ürün fotoğrafı yok; fotoğraf gerektiren konseptler yer tutucuyla mı kalsın?"
   ],
-  "notes": "Pilot B olarak seçildi (kullanıcı, 2026-10-23). Gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz."
+  "notes": "Pilot B olarak seçildi (kullanıcı, 2026-10-23). Gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz. Instagram stil kartı: docs/style-cards/whisk.md (2026-10-23)."
 }
