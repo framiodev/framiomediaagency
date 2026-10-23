@@ -9,37 +9,110 @@
   "sector": "Şehirlerarası tarifeli yolcu taşımacılığı (otobüs)",
   "location": null,
   "links": [
-    { "kind": "website", "url": "https://www.dkkoksallar.com/", "verified": true },
-    { "kind": "instagram", "url": "https://www.instagram.com/koksallarcom/", "verified": false }
+    {
+      "kind": "website",
+      "url": "https://www.dkkoksallar.com/",
+      "verified": true
+    },
+    {
+      "kind": "instagram",
+      "url": "https://www.instagram.com/koksallarcom/",
+      "verified": false
+    }
   ],
   "colors": {
-    "primary": { "hex": "#035A97", "role": "primary", "source": "web sitesi CSS (birincil mavi), 2026-10-23; logodaki lacivert ~#00508C ile uyumlu" },
-    "accent": { "hex": "#B81C22", "role": "accent", "source": "web sitesi CSS (bilet arama kutusu kırmızısı), 2026-10-23; logodaki kırmızı ~#E0181F (piksel örneği, yaklaşık)" },
-    "sky": { "hex": "#05B0F1", "role": "secondary", "source": "web sitesi CSS (vurgu düğmeleri), 2026-10-23" },
-    "ink": { "hex": "#394247", "role": "ink", "source": "web sitesi CSS (gövde metni), 2026-10-23" },
-    "paper": { "hex": "#FFFFFF", "role": "paper", "source": "web sitesi CSS, 2026-10-23" },
-    "mist": { "hex": "#F4F6FC", "role": "other", "source": "web sitesi CSS (açık zemin), 2026-10-23" },
-    "muted": { "hex": "#798195", "role": "muted", "source": "web sitesi CSS (ikincil metin), 2026-10-23" }
+    "primary": {
+      "hex": "#035A97",
+      "role": "primary",
+      "source": "web sitesi CSS (birincil mavi), 2026-10-23; logodaki lacivert ~#00508C ile uyumlu"
+    },
+    "accent": {
+      "hex": "#B81C22",
+      "role": "accent",
+      "source": "web sitesi CSS (bilet arama kutusu kırmızısı), 2026-10-23; logodaki kırmızı ~#E0181F (piksel örneği, yaklaşık)"
+    },
+    "sky": {
+      "hex": "#05B0F1",
+      "role": "secondary",
+      "source": "web sitesi CSS (vurgu düğmeleri), 2026-10-23"
+    },
+    "ink": {
+      "hex": "#394247",
+      "role": "ink",
+      "source": "web sitesi CSS (gövde metni), 2026-10-23"
+    },
+    "paper": {
+      "hex": "#FFFFFF",
+      "role": "paper",
+      "source": "web sitesi CSS, 2026-10-23"
+    },
+    "mist": {
+      "hex": "#F4F6FC",
+      "role": "other",
+      "source": "web sitesi CSS (açık zemin), 2026-10-23"
+    },
+    "muted": {
+      "hex": "#798195",
+      "role": "muted",
+      "source": "web sitesi CSS (ikincil metin), 2026-10-23"
+    }
   },
   "fonts": {
-    "text": { "family": "Inter", "files": [], "weights": [400, 500, 600], "asset_id": "font/inter" }
+    "text": {
+      "family": "Inter",
+      "files": [
+        "assets/Inter[opsz,wght].ttf"
+      ],
+      "weights": [
+        100,
+        200,
+        300,
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "asset_id": "font/inter"
+    }
   },
   "logos": [
-    { "id": "logo_primary", "variant": "primary", "file": "assets/logo.png", "asset_id": "logo/dk_primary" },
-    { "id": "logo_footer", "variant": "inverse", "file": "assets/footer-logo.png", "asset_id": "logo/dk_footer" }
+    {
+      "id": "logo_primary",
+      "variant": "primary",
+      "file": "assets/logo.png",
+      "asset_id": "logo/dk_primary"
+    }
   ],
-  "tone": { "voice": null, "address": null, "do": [], "dont": [], "sample": "Yola Bizimle Çık, Hikayeni Sen Yaz! (web sitesi üst bandı)" },
+  "tone": {
+    "voice": null,
+    "address": null,
+    "do": [],
+    "dont": [],
+    "sample": "Yola Bizimle Çık, Hikayeni Sen Yaz! (web sitesi üst bandı)"
+  },
   "provenance": {
     "assets": [
-      { "id": "font/inter", "source": "Web sitesinde kullanılan font (CSS font-family: Inter)", "license": "SIL OFL 1.1", "retrieved": "2026-10-23", "notes": "Dosya henüz indirilmedi; resmi kaynaktan (rsms/inter) alınacak" },
-      { "id": "logo/dk_primary", "source": "https://www.dkkoksallar.com/dkkoksallar/uploads/logo.png", "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması", "retrieved": "2026-10-23", "notes": "338×45 PNG, düşük çözünürlük; dosya henüz indirilmedi" },
-      { "id": "logo/dk_footer", "source": "https://www.dkkoksallar.com/dkkoksallar/uploads/footer-logo.png", "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması", "retrieved": "2026-10-23", "notes": "Dosya henüz indirilmedi" }
+      {
+        "id": "font/inter",
+        "source": "https://github.com/google/fonts/tree/main/ofl/inter (Google Fonts resmi deposu; upstream rsms/inter)",
+        "license": "SIL OFL 1.1",
+        "retrieved": "2026-10-23",
+        "notes": "Değişken font (opsz, wght). Lisans metni: assets/OFL-Inter.txt. Türkçe glif denetimini geçti."
+      },
+      {
+        "id": "logo/dk_primary",
+        "source": "https://www.dkkoksallar.com/dkkoksallar/uploads/logo.png",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması",
+        "retrieved": "2026-10-23",
+        "notes": "338×45 PNG, düşük çözünürlük. Sitedeki footer-logo.png bununla bayt bayt aynı, ayrıca tutulmadı."
+      }
     ]
   },
   "open_questions": [
     "Ses tonu: sen mi siz mi? Instagram kazınmaz; beğendiğin veya tipik 5-10 gönderinin bağlantısı ya da ekran görüntüsü gerekli",
     "Logo yüksek çözünürlüklü/vektör yok; sitedeki 338×45 PNG konsept için yeterli mi?",
-    "Inter font dosyası (OFL) resmi kaynaktan indirilsin mi?",
     "Renkler web sitesinden çıkarıldı; resmi marka kılavuzu yok, gönderilerde farklı renk kullanılıyor mu?"
   ],
   "notes": "ESG Dijital ile Eylül 2026'da yollarını ayırdı (kullanıcı bilgisi, 2026-10-23); şu an ajanssız olduğu düşünülüyor. Yine de gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz, markaya gönderilmez. İleride teklif sunulursa İYS ve KVKK kuralları uygulanır."
