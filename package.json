@@ -17,7 +17,8 @@
     "validate": "node src/cli.js validate",
     "brand": "node src/cli.js brand",
     "check": "npm run lint && npm test",
-    "doctor": "node scripts/doctor.mjs"
+    "doctor": "node scripts/doctor.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.2.0",

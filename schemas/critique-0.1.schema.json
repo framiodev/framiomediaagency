@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ajans-os.local/schemas/critique-0.1.schema.json",
+  "title": "Model critique of a rendered design (F0-7)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scores",
+    "failures",
+    "suggestions",
+    "summary"
+  ],
+  "properties": {
+    "scores": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "message",
+        "hierarchy",
+        "typography",
+        "layout",
+        "color",
+        "brand",
+        "quality",
+        "platform"
+      ],
+      "properties": {
+        "message": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "hierarchy": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "typography": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "layout": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "color": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "brand": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "quality": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "platform": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "severity",
+          "criterion",
+          "detail"
+        ],
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "criterion": {
+            "enum": [
+              "message",
+              "hierarchy",
+              "typography",
+              "layout",
+              "color",
+              "brand",
+              "quality",
+              "platform"
+            ]
+          },
+          "layer": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "change"
+        ],
+        "properties": {
+          "layer": {
+            "type": "string"
+          },
+          "change": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  }
+}

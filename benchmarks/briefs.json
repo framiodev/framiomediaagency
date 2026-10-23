@@ -1,0 +1,26 @@
+{
+  "$comment": "F0-8: 20 briefs over the two pilot brands. Facts come only from the brands' public website and Instagram captions reviewed on 2026-10-23 (docs/style-cards/); everything is a concept study and is never published.",
+  "briefs": [
+    { "id": "dk-01", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "29 Ekim Cumhuriyet Bayramı kutlaması (103. yıl)", "facts": ["29 Ekim 1923"], "cta": null },
+    { "id": "dk-02", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "Mersin–İstanbul hattında her gün karşılıklı 4 sefer", "facts": ["Kalkış saatleri: 09:00, 18:00, 20:30, 23:59", "Telefon: 0850 244 01 33", "Web: dkkoksallar.com"], "cta": "Yerinizi ayırtın" },
+    { "id": "dk-03", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "Filoya yeni katılan Mercedes-Benz Travego'yu tanıtın", "facts": ["Konforlu koltuklar", "Wi-Fi", "Kişisel ekranlar", "Yol boyunca ikram", "Geniş ve ferah iç mekân"], "cta": null },
+    { "id": "dk-04", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "Şimdi Çanakkale'yi keşfedin: Mersin ⇄ Çanakkale seferleri", "facts": ["Güzergâh: Mersin ⇄ Çanakkale"], "cta": "dkkoksallar.com" },
+    { "id": "dk-05", "brand": "dk_koksallar", "platform": "instagram_story_9x16", "message": "Gece yolculuğu bizimle güzel", "facts": [], "cta": "Biletini al" },
+    { "id": "dk-06", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "24 Kasım Öğretmenler Günü kutlaması", "facts": ["24 Kasım"], "cta": null },
+    { "id": "dk-07", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "Biletinizi online alın, koltuğunuzu seçin", "facts": ["Web: dkkoksallar.com"], "cta": "dkkoksallar.com" },
+    { "id": "dk-08", "brand": "dk_koksallar", "platform": "instagram_post_4x5", "message": "Mersin ⇄ Edirne karşılıklı seferler başladı (Lüleburgaz ve Çerkezköy üzerinden)", "facts": ["Güzergâh: Mersin ⇄ Edirne", "Ara duraklar: Lüleburgaz, Çerkezköy"], "cta": null },
+    { "id": "dk-09", "brand": "dk_koksallar", "platform": "instagram_story_9x16", "message": "Çağrı merkezimiz yolculuğunuzla ilgili her soruya yanıt veriyor", "facts": ["Telefon: 0850 244 01 33"], "cta": "Hemen arayın" },
+    { "id": "dk-10", "brand": "dk_koksallar", "platform": "instagram_post_1x1", "message": "Güvenle, konforla, keyifle: Türkiye'nin dört bir yanına değil, bildiğimiz hatlarımıza vurgu", "facts": ["Hatlar: Mersin, İstanbul, Ankara, Çanakkale, İzmir, Bursa, Edirne, Eskişehir, Niğde, Balıkesir"], "cta": null },
+
+    { "id": "wh-01", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Güne matcha latte ile başla", "facts": ["Slogan: Whisk up the day"], "cta": null },
+    { "id": "wh-02", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Yeni: white chocolate matcha cookie", "facts": [], "cta": null },
+    { "id": "wh-03", "brand": "whisk", "platform": "instagram_story_9x16", "message": "Çalışma saatlerimiz", "facts": ["Pazartesi kapalı", "Salı–Cumartesi 10:00–22:00", "Pazar 12:00–22:00", "Adres: Ankaralılar Cd. No:21 D:30, Çayyolu, Ankara"], "cta": null },
+    { "id": "wh-04", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Evde matcha nasıl çırpılır: 3 adım", "facts": ["Matcha'yı elekten geçir", "Sıcak suyu ekle", "Zikzak hareketle köpürene kadar çırp"], "cta": null },
+    { "id": "wh-05", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Whisk matcha kutuları artık satışta", "facts": ["Açık mavi etiketli metal kutu", "Web: whiskandmore.com"], "cta": "whiskandmore.com" },
+    { "id": "wh-06", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Strawberry matcha latte siparişini verdin mi?", "facts": [], "cta": null },
+    { "id": "wh-07", "brand": "whisk", "platform": "instagram_post_1x1", "message": "İşletmeler için toptan matcha", "facts": ["Toptan satış: whiskandmore.com"], "cta": "whiskandmore.com" },
+    { "id": "wh-08", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Matcha kasesi ve whisk tutucu seti: bebek mavisi", "facts": ["Fiyat: 3.300 ₺", "Web: whiskandmore.com"], "cta": "whiskandmore.com" },
+    { "id": "wh-09", "brand": "whisk", "platform": "instagram_story_9x16", "message": "3.500 ₺ ve üzeri siparişlerde kargo ücretsiz", "facts": ["Web: whiskandmore.com"], "cta": null },
+    { "id": "wh-10", "brand": "whisk", "platform": "instagram_post_4x5", "message": "Çayyolu'nda yavaş bir sabah", "facts": ["Adres: Çayyolu, Ankara"], "cta": null }
+  ]
+}

@@ -6,13 +6,15 @@ import Anthropic from '@anthropic-ai/sdk';
  */
 export function anthropicProvider(client = new Anthropic()) {
   return {
-    async complete({ model, config, system, messages, maxTokens, effort }) {
+    async complete({ model, config, system, messages, maxTokens, effort, outputSchema }) {
       const params = {
         model,
         max_tokens: maxTokens,
         messages,
         ...(system ? { system } : {}),
-        ...(effort ? { output_config: { effort } } : {}),
+        ...(effort || outputSchema
+          ? { output_config: { ...(effort ? { effort } : {}), ...(outputSchema ? { format: { type: 'json_schema', schema: outputSchema } } : {}) } }
+          : {}),
       };
       // Server-side fallback on safety refusals, where the model supports it.
       const res = config.fallbacks

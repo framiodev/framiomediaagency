@@ -15,9 +15,18 @@ export class BudgetExceededError extends Error {
 
 // Rough prompt size before sending: ~3 characters per token over-estimates
 // Turkish and English text, which is the safe direction for a budget check.
+// Images are counted at a flat ~1,600 tokens (a 1080px image is ~1,500).
+const IMAGE_TOKENS = 1600;
 const estimateTokens = (system, messages) => {
-  const text = JSON.stringify({ system, messages });
-  return Math.ceil(text.length / 3);
+  let images = 0;
+  const text = JSON.stringify({ system, messages }, (k, v) => {
+    if (v && v.type === 'image') {
+      images++;
+      return null;
+    }
+    return v;
+  });
+  return Math.ceil(text.length / 3) + images * IMAGE_TOKENS;
 };
 
 /**
@@ -64,7 +73,7 @@ export class LLM {
 
   /**
    * @param {{role?: string, model?: string, tenant: string, brand?: string, task: string,
-   *   system?: string, messages: object[], maxTokens?: number, effort?: string}} req
+   *   system?: string, messages: object[], maxTokens?: number, effort?: string, outputSchema?: object}} req
    * @returns {Promise<{text: string, usage: object, cost_usd: number, model: string, stop_reason: string}>}
    */
   async complete(req) {
@@ -75,7 +84,9 @@ export class LLM {
     this.checkBudget(req, estimate);
 
     const started = Date.now();
-    const res = await provider.complete({ model: id, config: cfg, system: req.system, messages: req.messages, maxTokens, effort: req.effort });
+    const res = await provider.complete({
+      model: id, config: cfg, system: req.system, messages: req.messages, maxTokens, effort: req.effort, outputSchema: req.outputSchema,
+    });
     const usd = cost(cfg, res.usage);
     this.ledger.append({
       at: this.now().toISOString(),

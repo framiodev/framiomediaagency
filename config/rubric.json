@@ -3,7 +3,7 @@
   "display_width_px": 375,
   "contrast": {
     "normal": 4.5,
-    "large": 3.0,
+    "large": 3,
     "percentile": 10
   },
   "large_text": {
@@ -13,7 +13,12 @@
   },
   "min_text_px": 11,
   "overlap_tolerance_px": 2,
-  "unknown_licenses": ["tbd", "unknown", "?", ""],
+  "unknown_licenses": [
+    "tbd",
+    "unknown",
+    "?",
+    ""
+  ],
   "severity": {
     "contrast_low": "critical",
     "missing_glyph": "critical",
@@ -25,5 +30,41 @@
     "text_overflow": "major",
     "text_too_small": "major",
     "off_palette": "minor"
-  }
+  },
+  "criteria": {
+    "message": {
+      "weight": 20,
+      "label": "Mesaj netliği (tek mesaj, tek odak)"
+    },
+    "hierarchy": {
+      "weight": 15,
+      "label": "Görsel hiyerarşi"
+    },
+    "typography": {
+      "weight": 15,
+      "label": "Tipografi (okunabilirlik, Türkçe glif)"
+    },
+    "layout": {
+      "weight": 15,
+      "label": "Yerleşim, grid, boşluk"
+    },
+    "color": {
+      "weight": 10,
+      "label": "Renk ve kontrast"
+    },
+    "brand": {
+      "weight": 10,
+      "label": "Marka uyumu"
+    },
+    "quality": {
+      "weight": 10,
+      "label": "Odak ve görsel kalite"
+    },
+    "platform": {
+      "weight": 5,
+      "label": "Platform uygunluğu"
+    }
+  },
+  "pass_score": 80,
+  "max_revision_rounds": 2
 }
