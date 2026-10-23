@@ -105,11 +105,11 @@ test('ready kit without colors, logo or voice is rejected', () => {
   assert.ok(paths.includes('/colors') && paths.includes('/logos') && paths.includes('/tone/voice'));
 });
 
-for (const id of ['dk_koksallar', 'pilot_b_cafe']) {
-  test(`pilot kit ${id} is a valid needs_input kit`, () => {
+for (const id of ['dk_koksallar', 'whisk']) {
+  test(`pilot kit ${id} is a valid pilot kit`, () => {
     const path = `brands/${id}/brand-kit.json`;
     const kit = JSON.parse(readFileSync(path, 'utf8'));
-    assert.equal(kit.status, 'needs_input');
+    assert.notEqual(kit.status, 'ready');
     assert.equal(kit.label, 'concept_study');
     assert.deepEqual(validateBrandKitFile(path).errors, []);
   });

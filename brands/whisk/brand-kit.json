@@ -1,0 +1,44 @@
+{
+  "kit_version": "0.1",
+  "brand_id": "whisk",
+  "tenant_id": "framio",
+  "name": "Whisk",
+  "status": "draft",
+  "label": "concept_study",
+  "pilot": true,
+  "sector": "Matcha odaklı kafe; matcha ve ekipman e-ticareti, toptan satış",
+  "location": "Çayyolu, Ankara (Google Haritalar kaydına göre; şube listesi sitede boş)",
+  "links": [
+    { "kind": "website", "url": "https://whiskandmore.com/", "verified": true },
+    { "kind": "instagram", "url": "https://www.instagram.com/whisk.more", "verified": false }
+  ],
+  "colors": {
+    "ink": { "hex": "#000000", "role": "ink", "source": "web sitesi CSS (gövde metni), 2026-10-23" },
+    "paper": { "hex": "#FFFFFF", "role": "paper", "source": "web sitesi CSS, 2026-10-23" },
+    "sky": { "hex": "#84ABD5", "role": "primary", "source": "web sitesi CSS (en sık kullanılan renkli öğe), 2026-10-23; marka rengi mi tema rengi mi doğrulanmadı" },
+    "cocoa": { "hex": "#5B3828", "role": "secondary", "source": "web sitesi CSS, 2026-10-23" },
+    "cream": { "hex": "#FFF1E2", "role": "other", "source": "web sitesi CSS (açık zemin), 2026-10-23" },
+    "butter": { "hex": "#FAF6BC", "role": "accent", "source": "web sitesi CSS ('Keşfet' düğmesi), 2026-10-23" },
+    "muted": { "hex": "#545454", "role": "muted", "source": "web sitesi CSS (ikincil metin), 2026-10-23" }
+  },
+  "fonts": {
+    "text": { "family": "Spartan", "files": [], "asset_id": "font/spartan" }
+  },
+  "logos": [
+    { "id": "logo_primary", "variant": "primary", "file": "assets/logo.webp", "asset_id": "logo/whisk_primary" }
+  ],
+  "tone": { "voice": null, "address": null, "do": [], "dont": [], "sample": null },
+  "provenance": {
+    "assets": [
+      { "id": "font/spartan", "source": "Web sitesinde kullanılan font (CSS font-family: Spartan); Google Fonts'ta League Spartan olarak yayımlanıyor", "license": "SIL OFL 1.1", "retrieved": "2026-10-23", "notes": "Dosya henüz indirilmedi; League Spartan ile aynı aile olduğu doğrulanmalı" },
+      { "id": "logo/whisk_primary", "source": "https://cdn.myikas.com/images/theme-images/c1482a17-185c-4569-aafb-cc63b309d9b3/image_1080.webp", "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması", "retrieved": "2026-10-23", "notes": "Sitede logo olarak işaretli görsel; dosya henüz indirilmedi" }
+    ]
+  },
+  "open_questions": [
+    "Instagram kazınmaz: whisk.more hesabından 10-15 örnek gönderinin bağlantısı veya ekran görüntüsü gerekli (ses tonu, fotoğraf dili, gerçek marka renkleri)",
+    "Sitedeki renkler e-ticaret temasından gelebilir; gönderilerde kullanılan renklerle karşılaştırılmalı",
+    "Çayyolu şubesi hâlâ açık mı? Sitedeki şube listesi boş",
+    "League Spartan font dosyası (OFL) resmi kaynaktan indirilsin mi?"
+  ],
+  "notes": "Pilot B olarak seçildi (kullanıcı, 2026-10-23). Gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz."
+}

@@ -33,7 +33,7 @@ Kapsam (kademeli):
 | Bütçe | API için "çok ciddi para" ödenmeyecek. Referans: şu an Adobe'ye aylık ~1.700 (TL olduğu varsayıldı, doğrula) ödeniyor; benzer aralık hedeflendi |
 | Satış niyeti | BYOK, çok kiracılı veri modeli ve lisans denetimi baştan düşünülmeli |
 | Referans ajanslar | ESG Dijital ve Zemberenk Medya (iki ajans; çalıştıkları markalar incelenecek). Mui Medya sonra |
-| Pilot markalar | A: DK Köksallar (ESG Dijital müşterisi); B: Ankara Çayyolu'ndan bir kafe/restoran (öneri Bölüm 8a'da) |
+| Pilot markalar | A: DK Köksallar (şehirlerarası otobüs; Eylül 2026'ya kadar ESG Dijital müşterisi); B: Whisk (Çayyolu, matcha kafe) — 2026-10-23'te seçildi |
 
 ## 3. Mimari
 
@@ -195,12 +195,14 @@ Durum: Sohbet sırasında web aramasıyla bu iki ajansın ve DK Köksallar marka
 3. Her örnekten stil kartı: grid, tipografi, renk, boşluk, odak, ton, format, hedef; ve **"neden iyi?" notu** (kullanıcı yazar).
 4. Kopya yok: kart ilkeleri saklar, birebir yerleşim saklamaz. Başka ajansların işini taklit etmek hukuki ve etik risktir.
 
-### Pilot A: DK Köksallar (ESG Dijital müşterisi)
+### Pilot A: DK Köksallar
+**Güncelleme (2026-10-23):** Şehirlerarası tarifeli yolcu taşımacılığı (otobüs). Web: dkkoksallar.com, Instagram: @koksallarcom. Eylül 2026'da ESG Dijital ile yollarını ayırdı; kullanıcının bildiğine göre şu an ajanssız. Logo/font dosyası yok; renkler ve font (Inter) web sitesinden çıkarıldı (`brands/dk_koksallar/brand-kit.json`). Aşağıdaki kurallar geçerliliğini korur: marka hâlâ izinsizdir.
 - Sektör, hesaplar ve varlıklar (logo, renkler, fontlar) **doğrulanmadı**; kullanıcıdan alınacak.
 - Bu marka başka bir ajansın müşterisidir. Çalışma yalnızca **iç konsept/benchmark çalışması** olarak yapılır: yayınlanmaz, markaya veya ajansa danışmadan portföyde ya da sunumda kullanılmaz, markaya doğrudan ulaşılmaz. Kullanıcının ESG Dijital ile ilişkisinin niteliği (ilham, rakip, ortaklık) net olmalı.
 - Marka kiti yalnızca kullanıcının sağladığı veya halka açık varlıklardan çıkarılır; lisanslı fontlar tahmin edilmez.
 
-### Pilot B: Ankara Çayyolu'ndan kafe/restoran
+### Pilot B: Whisk (Çayyolu)
+**Güncelleme (2026-10-23):** Kullanıcı Whisk'i seçti. Web: whiskandmore.com, Instagram: @whisk.more. Sitede matcha ve ekipman e-ticareti ile toptan satış da var. Kit: `brands/whisk/brand-kit.json`.
 Aday listesi (Google Haritalar kayıtlarından; görsel dili ve sosyal medya hesapları henüz incelenmedi):
 
 | Aday | Tür | Web sitesi |

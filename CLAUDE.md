@@ -22,8 +22,8 @@ Ayrıntılı plan: `docs/PROJE_BRIEF.md` (her oturumun başında oku).
 - Mimari kararlar `docs/adr/` altında kısa karar kaydı (ADR) olarak tutulur.
 
 ## Pilot markalar ve referanslar
-- Pilot markalar (DK Köksallar, Çayyolu'ndan bir kafe/restoran) **gerçek ve izinsiz** işletmelerdir. Bunlar için üretilen her çıktı "konsept çalışması" olarak etiketlenir ve **yayınlanmaz, paylaşılmaz, markaya gönderilmez**.
-- DK Köksallar başka bir ajansın (ESG Dijital) müşterisidir; marka veya ajansla iletişim kurma, kullanıcı söylemeden portföyde kullanma.
+- Pilot markalar (DK Köksallar, Whisk — Çayyolu matcha kafesi) **gerçek ve izinsiz** işletmelerdir. Bunlar için üretilen her çıktı "konsept çalışması" olarak etiketlenir ve **yayınlanmaz, paylaşılmaz, markaya gönderilmez**.
+- DK Köksallar (şehirlerarası otobüs firması) Eylül 2026'ya kadar ESG Dijital müşterisiydi, şu an ajanssız görünüyor. Yine de izinsizdir: markayla iletişim kurma, kullanıcı söylemeden portföyde kullanma.
 - Marka kitleri yalnızca kullanıcının verdiği veya halka açık varlıklardan çıkarılır; font, logo ve görsellerin kaynağını ve lisansını `provenance` alanına yaz.
 - Referans ajansların (ESG Dijital, Zemberenk Medya) işlerinden yalnızca **ilke ve teknik** çıkarılır (stil kartı); yerleşim, metin veya görsel kopyalanmaz.
 - Sosyal medya platformlarını otomatik kazıma (scraping); yalnızca kullanıcının verdiği bağlantı/ekran görüntüleri veya resmi API'ler.

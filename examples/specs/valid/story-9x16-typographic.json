@@ -8,7 +8,7 @@
     "label": "concept_study"
   },
   "canvas": { "w": 1080, "h": 1920, "unit": "px", "background": "#F4EFE6", "safe_area": { "top": 250, "bottom": 340, "side": 64 } },
-  "brand_ref": "pilot_b_cafe",
+  "brand_ref": "whisk",
   "grid": { "cols": 6, "rows": 16, "margin": 64, "gutter": 24, "baseline": 8 },
   "layers": [
     { "id": "kicker", "type": "text", "role": "label", "text": "CUMARTESİ · 09:00–13:00", "font": "brand.text", "size": 32, "tracking": 0.12,
