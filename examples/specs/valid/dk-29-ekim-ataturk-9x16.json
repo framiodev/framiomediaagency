@@ -1,0 +1,277 @@
+{
+  "spec_version": "0.2",
+  "intent": {
+    "message": "Cumhuriyetimizin 103. yılı kutlu olsun",
+    "audience": "DK Köksallar takipçileri ve yolcuları",
+    "platform": "instagram_story_9x16",
+    "label": "concept_study"
+  },
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "unit": "px",
+    "background": "brand.navy",
+    "safe_area": {
+      "top": 250,
+      "bottom": 340,
+      "side": 72
+    }
+  },
+  "brand_ref": "dk_koksallar",
+  "grid": {
+    "cols": 12,
+    "rows": 12,
+    "margin": 72,
+    "gutter": 24,
+    "baseline": 8
+  },
+  "provenance": {
+    "assets": [
+      {
+        "id": "logo-horizontal",
+        "source": "https://seeklogo.com/vector-logo/359735/dk-koksallar (EPS logo kılavuzu)",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept"
+      },
+      {
+        "id": "photo/coach-cutout",
+        "source": "Kullanıcının sağladığı fotoğraf \"68 ABL 500-5.jpg\" (DK Köksallar MAN otobüsü); Photoshop Select Subject ile dekupe",
+        "license": "Kullanıcı sağladı (stok); kullanım hakkı kullanıcıda, yalnızca iç konsept"
+      },
+      {
+        "id": "photo/ataturk-cutout",
+        "source": "https://commons.wikimedia.org/wiki/File:K._Ataturk_president_de_la_Republique_Turque.jpg (Direction Générale de la Presse, Ankara, 1923-1938; Library of Congress); Photoshop ile dekupe",
+        "license": "Public domain"
+      }
+    ]
+  },
+  "layers": [
+    {
+      "id": "sky",
+      "type": "shape",
+      "shape": "rect",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      },
+      "fill": {
+        "type": "linear",
+        "angle": 90,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "brand.navy"
+          },
+          {
+            "offset": 1,
+            "color": "brand.primary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "motif",
+      "type": "pattern",
+      "motif": "star8",
+      "color": "brand.sky",
+      "opacity": 0.1,
+      "scale": 120,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1920
+      }
+    },
+    {
+      "id": "portrait",
+      "type": "image",
+      "src": "asset://photo/ataturk-cutout",
+      "fit": "cover",
+      "grayscale": true,
+      "box": {
+        "x": 560,
+        "y": 330,
+        "w": 980,
+        "h": 1301
+      },
+      "shadow": {
+        "x": 0,
+        "y": 20,
+        "blur": 60,
+        "color": "#000000",
+        "opacity": 0.35
+      }
+    },
+    {
+      "id": "badge",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.paper",
+      "radius": 16,
+      "box": {
+        "x": 72,
+        "y": 258,
+        "w": 400,
+        "h": 80
+      },
+      "shadow": {
+        "x": 0,
+        "y": 6,
+        "blur": 18,
+        "color": "#000000",
+        "opacity": 0.25
+      }
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "src": "asset://logo-horizontal",
+      "fit": "contain",
+      "box": {
+        "x": 92,
+        "y": 274,
+        "w": 360,
+        "h": 48
+      }
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "role": "label",
+      "text": "29 Ekim 1923 – 2026",
+      "case": "upper",
+      "font": "brand.text",
+      "weight": 600,
+      "size": 36,
+      "tracking": 0.16,
+      "color": "brand.sky",
+      "box": {
+        "x": 72,
+        "y": 390,
+        "w": 470,
+        "h": 46
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "number",
+      "type": "text",
+      "role": "headline",
+      "text": "103",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 260,
+      "line_height": 1,
+      "color": "brand.ink_inverse",
+      "box": {
+        "x": 72,
+        "y": 440,
+        "w": 480,
+        "h": 316
+      },
+      "lang": "tr",
+      "shadow": {
+        "x": 0,
+        "y": 10,
+        "blur": 30,
+        "color": "#000000",
+        "opacity": 0.3
+      }
+    },
+    {
+      "id": "years",
+      "type": "text",
+      "role": "subhead",
+      "text": "yaşında",
+      "case": "upper",
+      "font": "brand.display",
+      "weight": 700,
+      "size": 66,
+      "tracking": 0.32,
+      "color": "brand.ink_inverse",
+      "box": {
+        "x": 76,
+        "y": 766,
+        "w": 470,
+        "h": 82
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "ribbon",
+      "type": "shape",
+      "shape": "polygon",
+      "fill": "brand.accent",
+      "box": {
+        "x": 0,
+        "y": 870,
+        "w": 720,
+        "h": 176
+      },
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0.93,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "shadow": {
+        "x": 0,
+        "y": 12,
+        "blur": 30,
+        "color": "#000000",
+        "opacity": 0.3
+      }
+    },
+    {
+      "id": "greeting",
+      "type": "text",
+      "role": "headline",
+      "text": "Cumhuriyet Bayramımız\nKutlu Olsun",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 50,
+      "line_height": 1.12,
+      "color": "brand.ink_inverse",
+      "box": {
+        "x": 72,
+        "y": 892,
+        "w": 620,
+        "h": 130
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "coach",
+      "type": "image",
+      "src": "asset://photo/coach-cutout",
+      "fit": "cover",
+      "box": {
+        "x": -80,
+        "y": 1100,
+        "w": 1120,
+        "h": 745
+      },
+      "shadow": {
+        "x": 0,
+        "y": 24,
+        "blur": 40,
+        "color": "#000000",
+        "opacity": 0.45
+      }
+    }
+  ]
+}

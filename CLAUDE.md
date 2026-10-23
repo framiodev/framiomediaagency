@@ -10,7 +10,8 @@ Ayrıntılı plan: `docs/PROJE_BRIEF.md` (her oturumun başında oku).
 
 ## Kurallar
 - İletişim dili Türkçe; kod, değişken adları ve commit mesajları İngilizce olabilir.
-- Şu an **Faz 0** aşamasındayız (komut satırı prototipi). Faz 0 bitmeden arayüze ve Tauri'ye geçme.
+- Şu an **Faz 0** aşamasındayız (komut satırı prototipi). Sonra **Faz 0R (Referans kalitesi)** gelir; arayüz öncelik değildir. Faz 0 ve 0R bitmeden arayüze ve Tauri'ye geçme.
+- Sistemin kalite hedefi: verilen referans ajansların temel tasarım dilinin en az %70-80'ini öğrenip ona çok yakın çıktı üretmek (brief Bölüm 11a).
 - Her görevden önce kabul kriterini `docs/PROJE_BRIEF.md` Bölüm 11'den oku; kriteri geçmeyen işi "bitti" sayma.
 - Ajanlar bir motora değil **tasarım spec'ine** yazar (Bölüm 5). Renderer'lar spec'i tüketir.
 - Her model çağrısı ve render işi maliyet sayacından geçer; aylık bütçe tavanı aşılırsa dur ve kullanıcıya sor.

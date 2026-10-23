@@ -227,7 +227,8 @@ Model yeniden eğitilmez; öğrenme modelin dışında bir bilgi katmanıdır:
 - **Sonuçlar:** İleride performans verisi hafızaya girer.
 
 Sınırlar:
-- Instagram/TikTok'u otomatik kazıma yapma (kırılgan, hizmet şartlarına aykırı). Resmi API, halka açık kaynak ve kullanıcının verdiği bağlantı/ekran görüntüsü.
+- Instagram/TikTok'u toplu kazıma yapma (kırılgan, hizmet şartlarına aykırı). Resmi API, halka açık kaynak ve kullanıcının verdiği bağlantı/ekran görüntüsü.
+- **Referans tarayıcı (v0.3, kullanıcı isteği):** Sistem, kullanıcının verdiği Instagram hesaplarına **salt okunur** erişip gönderileri görebilmeli ve analiz edebilmelidir: profil ızgarası, gönderi görselleri ve açıklamaları. Hiçbir işlem yapmaz (beğeni, takip, yorum, mesaj yok), dosya indirmez; ekran görüntüsünden stil kartı çıkarır, görselin kendisini kopya olarak saklamaz. Öncelikli yol resmî **Instagram Graph API — Business Discovery** (kullanıcının kendi işletme hesabıyla başka herkese açık işletme/üretici hesaplarının medyasını okur; doğrula: kapsam, erişim izni, oran sınırları). Yedek yol: kullanıcının oturum açık tarayıcısında düşük hacimli, insan hızında görüntüleme (F0-9'da kullanıldı). Hizmet şartı riski kayıt altında; hacim sınırı ve kullanıcı onayı zorunlu.
 - Stok görsel, font ve yapay zekâ görseli lisansları varlık yöneticisinde takip edilir.
 - Müşteri materyali model sağlayıcıya gittiği için kullanım şartları ve KVKK dikkate alınır. Soğuk müşteri bulmada İYS ve KVKK koşulları sisteme baştan yazılır.
 
@@ -324,11 +325,28 @@ Hedef: Arayüz yok; komut satırında "brief → spec → yerel render → eleş
 
 Faz 0 bitmeden arayüze geçilmez. Kalite kanıtı pilot markalar için körleme karşılaştırmayla (şablon çıktısına karşı) doğrulanır; pilot çalışmalar yayınlanmaz (Bölüm 8a).
 
+## 11a. Faz 0R — Referans kalitesi (YENİ, v0.3)
+
+Hedef: Sistem, kullanıcının verdiği ajansların (ESG Dijital, Zemberenk Medya ve sonradan eklenecekler) **temel tasarım dilinin en az %70-80'ini** öğrenip bu dile çok yakın çıktı üretebilmeli. Faz 1 planı değişmez; Faz 0R, Faz 1'den önce ve gerekirse ona paralel yürür. Arayüz öncelik değildir.
+
+| # | Görev | Kabul kriteri |
+|---|---|---|
+| R-1 | **Referans tarayıcı**: verilen Instagram hesabını salt okunur gezer, gönderi görselleri + açıklamalarını analiz için alır (Graph API Business Discovery öncelikli, tarayıcı yedek) | Bir ajans hesabının son 50 gönderisi işlem yapılmadan okunur; ekran görüntüsü yerine analiz verisi saklanır |
+| R-2 | **Stil kartı veri modeli**: grid, tipografi, renk ilişkileri, kompozisyon arketipi, teknikler (maske, dekupe, kinetik tipografi…), ton, format; ajans ve marka düzeyinde | JSON Schema; F0-9 kartları bu modele taşınır |
+| R-3 | **Otomatik stil çıkarımı**: vision model gönderiden kartı doldurur | Kullanıcının işaretlediği 30 gönderide özniteliklerin ≥%80'i doğru |
+| R-4 | **Ajans dili modeli**: bir ajansın kartlarından "temel tasarım dili" özeti (sık arketipler, imza öğeler, renk/tipografi kuralları, yasaklar) | Kullanıcı özetin ajans dilini ≥%80 doğru tarif ettiğini onaylar |
+| R-5 | **Kompozisyon arketipleri ve seri şablonları** (spec'e eklenir) | Her referans ajans için en sık 10 arketip spec iskeleti olarak var |
+| R-6 | **Görsel hazırlama hattı**: dekupe (Photoshop Select Subject, yedek rembg), yapay zekâ üretimi (SDXL/API), sahneye yerleştirme | 29 Ekim konseptindeki gibi araç ve portre dekupesi otomatik çalışır |
+| R-7 | **Referansa yakınlık ölçütü**: rubriğe "ajans diline uygunluk" puanı (model, üretilen görseli ajans örnekleriyle yan yana değerlendirir) | Puan, kullanıcı yargısıyla ≥%70 uyumlu |
+| R-8 | **Körleme değerlendirme**: basit yerel sayfa; sistem çıktısı ve gerçek ajans işleri etiketsiz | Sistem çıktılarının **≥%70'i** kullanıcı tarafından "bu ajansın dilinde" olarak işaretlenir; hedef %80 |
+| R-9 | **Yeni ajans ekleme**: hesap verildiğinde R-1 → R-4 otomatik çalışır | Yeni bir ajans eklenip dil özeti ve 5 örnek çıktı tek komutla üretilir |
+
 ## 12. Yol haritası
 
 | Faz | Süre (kaba) | İçerik |
 |---|---|---|
 | 0 | 2-3 hafta | Yukarıdaki görev listesi (F0-12 dahil) |
+| 0R | 4-6 hafta | **Referans kalitesi** (YENİ, arayüzden önce): referans tarayıcı, stil kartı veri modeli, kompozisyon arketipleri, görsel hazırlama hattı (dekupe, üretim, yerleştirme), seri şablonları, referansa yakınlık ölçütü, körleme değerlendirme aracı. Kabul kriteri: aşağıda |
 | 1 | 6-8 hafta | Spec v0.2 (işlem + zengin kompozisyon), motor eklenti protokolü, **Photoshop motoru** (UXP), Tauri istemcisi (Windows), bulut API, marka kiti, onay panosu; CI'da macOS derlemesi |
 | 2 | 5-7 hafta | MCP istemcisi, Illustrator, After Effects, InDesign, Premiere motorları; FFmpeg/Remotion, ComfyUI; açık kaynak yedek motorlar; Android istemci |
 | 3 | 4-6 hafta | Referans kütüphanesi, stil kartları, zevk hafızası, planlayıcı, Postiz yayın, video sağlayıcı eklentisi |
