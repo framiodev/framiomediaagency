@@ -22,23 +22,38 @@
   ],
   "colors": {
     "primary": {
-      "hex": "#035A97",
+      "hex": "#0E4385",
       "role": "primary",
-      "source": "web sitesi CSS (birincil mavi), 2026-10-23; logodaki lacivert ~#00508C ile uyumlu"
+      "source": "logo kılavuzu (seeklogo EPS, Ozan Işık tasarımı), vektörden örneklendi 2026-10-23; kılavuzda \"P 286 C\""
+    },
+    "navy": {
+      "hex": "#0A2249",
+      "role": "ink",
+      "source": "logo kılavuzu (seeklogo EPS, Ozan Işık tasarımı), vektörden örneklendi 2026-10-23; kılavuzda \"P 286 C / Koyu\""
     },
     "accent": {
-      "hex": "#B81C22",
+      "hex": "#E11F1C",
       "role": "accent",
-      "source": "web sitesi CSS (bilet arama kutusu kırmızısı), 2026-10-23; logodaki kırmızı ~#E0181F (piksel örneği, yaklaşık)"
+      "source": "logo kılavuzu (seeklogo EPS, Ozan Işık tasarımı), vektörden örneklendi 2026-10-23; kılavuzda \"P 485 C\""
+    },
+    "accent_dark": {
+      "hex": "#B81C22",
+      "role": "other",
+      "source": "web sitesi CSS (bilet kutusu), 2026-10-23; kılavuzdaki \"P 485 C / Koyu\" ile uyumlu"
     },
     "sky": {
       "hex": "#05B0F1",
       "role": "secondary",
-      "source": "web sitesi CSS (vurgu düğmeleri), 2026-10-23"
+      "source": "web sitesi CSS, 2026-10-23; kılavuzdaki \"%80 Cyan\" ile uyumlu"
+    },
+    "silver": {
+      "hex": "#C6C6C6",
+      "role": "muted",
+      "source": "logo kılavuzu (seeklogo EPS, Ozan Işık tasarımı), vektörden örneklendi 2026-10-23; kılavuzda \"%30 Siyah\""
     },
     "ink": {
       "hex": "#394247",
-      "role": "ink",
+      "role": "other",
       "source": "web sitesi CSS (gövde metni), 2026-10-23"
     },
     "paper": {
@@ -46,20 +61,15 @@
       "role": "paper",
       "source": "web sitesi CSS, 2026-10-23"
     },
+    "ink_inverse": {
+      "hex": "#FFFFFF",
+      "role": "ink_inverse",
+      "source": "türetilmiş: paper ile aynı beyaz"
+    },
     "mist": {
       "hex": "#F4F6FC",
       "role": "other",
       "source": "web sitesi CSS (açık zemin), 2026-10-23"
-    },
-    "muted": {
-      "hex": "#798195",
-      "role": "muted",
-      "source": "web sitesi CSS (ikincil metin), 2026-10-23"
-    },
-    "ink_inverse": {
-      "hex": "#FFFFFF",
-      "role": "ink_inverse",
-      "source": "türetilmiş: paper ile aynı beyaz, koyu zemin üstü metin için"
     }
   },
   "fonts": {
@@ -102,9 +112,28 @@
   },
   "logos": [
     {
-      "id": "logo_primary",
+      "id": "logo_horizontal",
       "variant": "primary",
-      "file": "assets/logo.png",
+      "file": "assets/logo-horizontal.png",
+      "asset_id": "logo/dk_vector",
+      "min_width_px": 240
+    },
+    {
+      "id": "logo_vertical",
+      "variant": "wordmark",
+      "file": "assets/logo-vertical.png",
+      "asset_id": "logo/dk_vector"
+    },
+    {
+      "id": "logo_mark",
+      "variant": "mark",
+      "file": "assets/logo-mark.png",
+      "asset_id": "logo/dk_vector"
+    },
+    {
+      "id": "logo_web",
+      "variant": "primary",
+      "file": "assets/logo-web.png",
       "asset_id": "logo/dk_primary"
     }
   ],
@@ -116,7 +145,8 @@
       "Sefer saatlerini net ver",
       "Konfor, güven, dakiklik değerlerinden birini öne çıkar",
       "Telefon ve web adresiyle bitir",
-      "Metinde ölçülü emoji ve 4-6 hashtag (#DKKöksallar + güzergâh)"
+      "Metinde ölçülü emoji ve 4-6 hashtag (#DKKöksallar + güzergâh)",
+      "Logoyu kılavuzdaki yatay veya dikey kullanımla, oranını bozmadan kullan"
     ],
     "dont": [
       "Başka ajansın gönderi yerleşimini veya metnini kopyalama",
@@ -140,11 +170,18 @@
         "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması",
         "retrieved": "2026-10-23",
         "notes": "338×45 PNG, düşük çözünürlük. Sitedeki footer-logo.png bununla bayt bayt aynı, ayrıca tutulmadı."
+      },
+      {
+        "id": "logo/dk_vector",
+        "source": "https://seeklogo.com/vector-logo/359735/dk-koksallar (EPS, kullanıcı verdi; tasarımcı: Ozan Işık / behance.net/ozanisik)",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept çalışması",
+        "retrieved": "2026-10-23",
+        "notes": "EPS logo kılavuzu sayfası; Photoshop ile 1200 dpi rasterize edildi, yatay/dikey/simge kırpıldı (assets/logo-*.png). Kurumsal font kılavuzda \"Neo Sans Medium\" (ticari, Monotype); dosyası yok, konseptlerde Inter kullanılıyor."
       }
     ]
   },
   "open_questions": [
-    "Logo yüksek çözünürlüklü/vektör yok; sitedeki 338×45 PNG konsept için yeterli mi?"
+    "Kurumsal font Neo Sans Medium ticari bir fonttur (Monotype); lisanslı dosya yok. Konseptlerde Inter ile ilerleniyor; gerçek iş için lisans gerekir."
   ],
   "notes": "ESG Dijital ile Eylül 2026'da yollarını ayırdı (kullanıcı bilgisi, 2026-10-23); şu an ajanssız olduğu düşünülüyor. Yine de gerçek ve izinsiz bir işletme: çıktılar konsept çalışmasıdır, yayınlanmaz, markaya gönderilmez. İleride teklif sunulursa İYS ve KVKK kuralları uygulanır. Instagram stil kartı: docs/style-cards/dk_koksallar.md (2026-10-23)."
 }

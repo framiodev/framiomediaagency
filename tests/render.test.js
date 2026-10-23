@@ -64,7 +64,8 @@ test('a change in the spec changes the output', () => {
 
 test('text wraps inside its grid frame', () => {
   const { svg } = renderSpec(spec(), { brandsDir });
-  const xs = [...svg.match(/id="h" d="([^"]+)"/)[1].matchAll(/[ML](-?[\d.]+) /g)].map((m) => Number(m[1]));
+  const group = svg.match(/<g id="h" data-role="text"[^>]*>(.*?)<\/g>/)[1];
+  const xs = [...group.matchAll(/[ML](-?[\d.]+) /g)].map((m) => Number(m[1]));
   const right = 72 + 10 * ((1080 - 144 - 11 * 24) / 12) + 9 * 24;
   assert.ok(Math.max(...xs) <= right + 0.5, `text reaches x=${Math.max(...xs)}, frame ends at ${right}`);
 });

@@ -142,3 +142,10 @@ test('every failure maps to a rubric criterion', () => {
   s.layers[2].box.y = 1250;
   for (const f of run(s).failures) assert.ok(f.criterion, f.code);
 });
+
+test('decorative text may bleed off canvas and sit under other text', () => {
+  const s = spec();
+  s.layers.push({ id: 'stripe', type: 'text', role: 'decor', text: 'MERSİN İSTANBUL ANKARA', font: 'brand.text', size: 200, color: '#EEEEEE', lang: 'tr', box: { x: -100, y: 560, w: 1400, h: 260 } });
+  const found = codes(s).filter((c) => !c.startsWith('off_palette'));
+  assert.deepEqual(found, []);
+});

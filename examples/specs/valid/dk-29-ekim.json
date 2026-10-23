@@ -1,0 +1,277 @@
+{
+  "spec_version": "0.2",
+  "intent": {
+    "message": "Cumhuriyetimizin 103. yılını kutluyoruz",
+    "audience": "DK Köksallar takipçileri ve yolcuları",
+    "cta": "Kutlu olsun",
+    "platform": "instagram_post_4x5",
+    "label": "concept_study"
+  },
+  "canvas": {
+    "w": 1080,
+    "h": 1350,
+    "unit": "px",
+    "background": "brand.navy",
+    "safe_area": {
+      "top": 120,
+      "bottom": 160,
+      "side": 72
+    }
+  },
+  "brand_ref": "dk_koksallar",
+  "grid": {
+    "cols": 12,
+    "rows": 12,
+    "margin": 72,
+    "gutter": 24,
+    "baseline": 8
+  },
+  "layers": [
+    {
+      "id": "sky",
+      "type": "shape",
+      "shape": "rect",
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1350
+      },
+      "fill": {
+        "type": "linear",
+        "angle": 90,
+        "stops": [
+          {
+            "offset": 0,
+            "color": "brand.navy"
+          },
+          {
+            "offset": 1,
+            "color": "brand.primary"
+          }
+        ]
+      }
+    },
+    {
+      "id": "motif",
+      "type": "pattern",
+      "motif": "star8",
+      "color": "brand.sky",
+      "opacity": 0.14,
+      "scale": 120,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 1080,
+        "h": 1350
+      }
+    },
+    {
+      "id": "year",
+      "type": "text",
+      "role": "decor",
+      "text": "1923",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 420,
+      "color": "brand.primary",
+      "box": {
+        "x": -40,
+        "y": 620,
+        "w": 1200,
+        "h": 420
+      },
+      "align": "center",
+      "lang": "tr"
+    },
+    {
+      "id": "kicker",
+      "type": "text",
+      "role": "label",
+      "text": "29 Ekim 1923 – 2026",
+      "case": "upper",
+      "font": "brand.text",
+      "weight": 600,
+      "size": 40,
+      "tracking": 0.18,
+      "color": "brand.sky",
+      "grid": {
+        "col": 1,
+        "span": 12,
+        "row": 2
+      },
+      "align": "center",
+      "lang": "tr"
+    },
+    {
+      "id": "headline",
+      "role": "headline",
+      "type": "text",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 100,
+      "case": "upper",
+      "color": "brand.ink_inverse",
+      "align": "center",
+      "lang": "tr",
+      "text": "Cumhuriyetimiz",
+      "box": {
+        "x": 72,
+        "y": 354,
+        "w": 936,
+        "h": 124
+      },
+      "shadow": {
+        "x": 0,
+        "y": 6,
+        "blur": 24,
+        "color": "#000000",
+        "opacity": 0.35
+      }
+    },
+    {
+      "id": "ribbon",
+      "type": "shape",
+      "shape": "polygon",
+      "fill": "brand.accent",
+      "box": {
+        "x": 170,
+        "y": 486,
+        "w": 740,
+        "h": 150
+      },
+      "points": [
+        [
+          0.04,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0.96,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "shadow": {
+        "x": 0,
+        "y": 10,
+        "blur": 30,
+        "color": "#000000",
+        "opacity": 0.3
+      }
+    },
+    {
+      "id": "headline2",
+      "role": "headline",
+      "type": "text",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 100,
+      "case": "upper",
+      "color": "brand.ink_inverse",
+      "align": "center",
+      "lang": "tr",
+      "text": "103 yaşında",
+      "box": {
+        "x": 190,
+        "y": 502,
+        "w": 700,
+        "h": 124
+      }
+    },
+    {
+      "id": "sub",
+      "type": "text",
+      "role": "subhead",
+      "text": "Nice yıllara, birlikte yol almaya.",
+      "font": "brand.text",
+      "weight": 500,
+      "size": 44,
+      "color": "brand.ink_inverse",
+      "grid": {
+        "col": 2,
+        "span": 10,
+        "row": 7
+      },
+      "align": "center",
+      "lang": "tr"
+    },
+    {
+      "id": "band",
+      "type": "shape",
+      "shape": "polygon",
+      "fill": "brand.accent",
+      "box": {
+        "x": 0,
+        "y": 1030,
+        "w": 1080,
+        "h": 320
+      },
+      "points": [
+        [
+          0,
+          0.22
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "id": "panel",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.paper",
+      "radius": 20,
+      "box": {
+        "x": 252,
+        "y": 1080,
+        "w": 576,
+        "h": 100
+      },
+      "shadow": {
+        "x": 0,
+        "y": 8,
+        "blur": 24,
+        "color": "#000000",
+        "opacity": 0.25
+      }
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "src": "asset://logo-horizontal",
+      "fit": "contain",
+      "box": {
+        "x": 282,
+        "y": 1098,
+        "w": 516,
+        "h": 64
+      }
+    }
+  ],
+  "provenance": {
+    "assets": [
+      {
+        "id": "logo-horizontal",
+        "source": "https://seeklogo.com/vector-logo/359735/dk-koksallar (EPS logo kılavuzu)",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept"
+      }
+    ]
+  }
+}

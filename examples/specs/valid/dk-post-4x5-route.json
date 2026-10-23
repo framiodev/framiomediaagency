@@ -43,7 +43,7 @@
     {
       "id": "logo",
       "type": "image",
-      "src": "asset://logo",
+      "src": "asset://logo-horizontal",
       "fit": "contain",
       "grid": {
         "col": 2,
@@ -136,8 +136,8 @@
   "provenance": {
     "assets": [
       {
-        "id": "logo",
-        "source": "https://www.dkkoksallar.com/dkkoksallar/uploads/logo.png",
+        "id": "logo-horizontal",
+        "source": "https://seeklogo.com/vector-logo/359735/dk-koksallar (EPS logo kılavuzu)",
         "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept"
       }
     ]

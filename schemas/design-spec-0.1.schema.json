@@ -1,21 +1,47 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ajans-os.local/schemas/design-spec-0.1.schema.json",
-  "title": "Design spec v0.1",
-  "description": "Agents write this document; renderers consume it. See docs/PROJE_BRIEF.md section 5.",
+  "title": "Design spec v0.1 / v0.2",
+  "description": "Agents write this document; renderers consume it. See docs/PROJE_BRIEF.md section 5. v0.2 adds rich composition (F0-13): inline text spans, gradients, polygons, masks, tint, rotation, shadow and pattern layers.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["spec_version", "intent", "canvas", "brand_ref", "grid", "layers", "provenance"],
+  "required": [
+    "spec_version",
+    "intent",
+    "canvas",
+    "brand_ref",
+    "grid",
+    "layers",
+    "provenance"
+  ],
   "properties": {
-    "spec_version": { "const": "0.1" },
+    "spec_version": {
+      "enum": [
+        "0.1",
+        "0.2"
+      ]
+    },
     "intent": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["message", "audience", "platform"],
+      "required": [
+        "message",
+        "audience",
+        "platform"
+      ],
       "properties": {
-        "message": { "type": "string", "minLength": 1, "maxLength": 280 },
-        "audience": { "type": "string", "minLength": 1 },
-        "cta": { "type": "string" },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 280
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cta": {
+          "type": "string"
+        },
         "platform": {
           "enum": [
             "instagram_post_1x1",
@@ -28,42 +54,95 @@
         },
         "label": {
           "description": "Usage label. Pilot brands must use 'concept_study' (CLAUDE.md).",
-          "enum": ["client_work", "concept_study", "internal"]
+          "enum": [
+            "client_work",
+            "concept_study",
+            "internal"
+          ]
         }
       }
     },
     "canvas": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["w", "h", "unit"],
+      "required": [
+        "w",
+        "h",
+        "unit"
+      ],
       "properties": {
-        "w": { "type": "integer", "minimum": 1, "maximum": 8192 },
-        "h": { "type": "integer", "minimum": 1, "maximum": 8192 },
-        "unit": { "const": "px" },
-        "background": { "$ref": "#/$defs/color" },
+        "w": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "unit": {
+          "const": "px"
+        },
+        "background": {
+          "$ref": "#/$defs/color"
+        },
         "safe_area": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["top", "bottom", "side"],
+          "required": [
+            "top",
+            "bottom",
+            "side"
+          ],
           "properties": {
-            "top": { "$ref": "#/$defs/nonNegInt" },
-            "bottom": { "$ref": "#/$defs/nonNegInt" },
-            "side": { "$ref": "#/$defs/nonNegInt" }
+            "top": {
+              "$ref": "#/$defs/nonNegInt"
+            },
+            "bottom": {
+              "$ref": "#/$defs/nonNegInt"
+            },
+            "side": {
+              "$ref": "#/$defs/nonNegInt"
+            }
           }
         }
       }
     },
-    "brand_ref": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+    "brand_ref": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9_-]*$"
+    },
     "grid": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["cols", "margin", "gutter", "baseline"],
+      "required": [
+        "cols",
+        "margin",
+        "gutter",
+        "baseline"
+      ],
       "properties": {
-        "cols": { "type": "integer", "minimum": 1, "maximum": 24 },
-        "rows": { "type": "integer", "minimum": 1, "maximum": 48 },
-        "margin": { "$ref": "#/$defs/nonNegInt" },
-        "gutter": { "$ref": "#/$defs/nonNegInt" },
-        "baseline": { "type": "integer", "minimum": 1 }
+        "cols": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 24
+        },
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 48
+        },
+        "margin": {
+          "$ref": "#/$defs/nonNegInt"
+        },
+        "gutter": {
+          "$ref": "#/$defs/nonNegInt"
+        },
+        "baseline": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "layers": {
@@ -71,31 +150,104 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["type"],
-        "properties": { "type": { "enum": ["image", "text", "shape"] } },
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "enum": [
+              "image",
+              "text",
+              "shape",
+              "pattern"
+            ]
+          }
+        },
         "allOf": [
-          { "if": { "properties": { "type": { "const": "image" } } }, "then": { "$ref": "#/$defs/imageLayer" } },
-          { "if": { "properties": { "type": { "const": "text" } } }, "then": { "$ref": "#/$defs/textLayer" } },
-          { "if": { "properties": { "type": { "const": "shape" } } }, "then": { "$ref": "#/$defs/shapeLayer" } }
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "image"
+                }
+              }
+            },
+            "then": {
+              "$ref": "#/$defs/imageLayer"
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "text"
+                }
+              }
+            },
+            "then": {
+              "$ref": "#/$defs/textLayer"
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "shape"
+                }
+              }
+            },
+            "then": {
+              "$ref": "#/$defs/shapeLayer"
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "pattern"
+                }
+              }
+            },
+            "then": {
+              "$ref": "#/$defs/patternLayer"
+            }
+          }
         ]
       }
     },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["assets"],
+      "required": [
+        "assets"
+      ],
       "properties": {
         "assets": {
           "type": "array",
           "items": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["id", "source", "license"],
+            "required": [
+              "id",
+              "source",
+              "license"
+            ],
             "properties": {
-              "id": { "type": "string", "minLength": 1 },
-              "source": { "type": "string", "minLength": 1 },
-              "license": { "type": "string", "minLength": 1 },
-              "notes": { "type": "string" }
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source": {
+                "type": "string",
+                "minLength": 1
+              },
+              "license": {
+                "type": "string",
+                "minLength": 1
+              },
+              "notes": {
+                "type": "string"
+              }
             }
           }
         }
@@ -108,20 +260,48 @@
         "scores": {
           "type": "object",
           "propertyNames": {
-            "enum": ["message", "hierarchy", "typography", "layout", "color", "brand", "quality", "platform"]
+            "enum": [
+              "message",
+              "hierarchy",
+              "typography",
+              "layout",
+              "color",
+              "brand",
+              "quality",
+              "platform"
+            ]
           },
-          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 100 }
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          }
         },
         "failures": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["code", "severity"],
+            "required": [
+              "code",
+              "severity"
+            ],
             "properties": {
-              "code": { "type": "string" },
-              "severity": { "enum": ["critical", "major", "minor"] },
-              "layer": { "type": "string" },
-              "detail": { "type": "string" }
+              "code": {
+                "type": "string"
+              },
+              "severity": {
+                "enum": [
+                  "critical",
+                  "major",
+                  "minor"
+                ]
+              },
+              "layer": {
+                "type": "string"
+              },
+              "detail": {
+                "type": "string"
+              }
             }
           }
         }
@@ -129,8 +309,14 @@
     }
   },
   "$defs": {
-    "nonNegInt": { "type": "integer", "minimum": 0 },
-    "layerId": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+    "nonNegInt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "layerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
     "color": {
       "description": "Hex color or brand token (e.g. brand.ink).",
       "type": "string",
@@ -139,79 +325,506 @@
     "gridPlacement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["col", "span", "row"],
+      "required": [
+        "col",
+        "span",
+        "row"
+      ],
       "properties": {
-        "col": { "type": "integer", "minimum": 1 },
-        "span": { "type": "integer", "minimum": 1 },
-        "row": { "type": "integer", "minimum": 1 },
-        "row_span": { "type": "integer", "minimum": 1 }
+        "col": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "span": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "row": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "row_span": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "box": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["x", "y", "w", "h"],
+      "required": [
+        "x",
+        "y",
+        "w",
+        "h"
+      ],
       "properties": {
-        "x": { "type": "integer" },
-        "y": { "type": "integer" },
-        "w": { "type": "integer", "minimum": 1 },
-        "h": { "type": "integer", "minimum": 1 }
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "w": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "h": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "placement": {
       "description": "A layer is placed by grid or by box, never both. Neither means full canvas.",
-      "not": { "type": "object", "required": ["grid", "box"] }
+      "not": {
+        "type": "object",
+        "required": [
+          "grid",
+          "box"
+        ]
+      }
     },
     "imageLayer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "type", "src", "fit"],
+      "required": [
+        "id",
+        "type",
+        "src",
+        "fit"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/layerId" },
-        "type": { "const": "image" },
-        "src": { "type": "string", "pattern": "^asset://[A-Za-z0-9._/-]+$" },
-        "fit": { "enum": ["cover", "contain", "fill"] },
-        "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
-        "grid": { "$ref": "#/$defs/gridPlacement" },
-        "box": { "$ref": "#/$defs/box" }
+        "id": {
+          "$ref": "#/$defs/layerId"
+        },
+        "type": {
+          "const": "image"
+        },
+        "src": {
+          "type": "string",
+          "pattern": "^asset://[A-Za-z0-9._/-]+$"
+        },
+        "fit": {
+          "enum": [
+            "cover",
+            "contain",
+            "fill"
+          ]
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "grid": {
+          "$ref": "#/$defs/gridPlacement"
+        },
+        "box": {
+          "$ref": "#/$defs/box"
+        },
+        "mask": {
+          "oneOf": [
+            {
+              "enum": [
+                "rect",
+                "ellipse"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "points"
+              ],
+              "properties": {
+                "points": {
+                  "$ref": "#/$defs/points"
+                }
+              }
+            }
+          ]
+        },
+        "tint": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "color",
+            "opacity"
+          ],
+          "properties": {
+            "color": {
+              "$ref": "#/$defs/color"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "grayscale": {
+          "type": "boolean"
+        },
+        "rotate": {
+          "$ref": "#/$defs/rotate"
+        },
+        "shadow": {
+          "$ref": "#/$defs/shadow"
+        }
       },
       "$ref": "#/$defs/placement"
     },
     "textLayer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "type", "text", "font", "size", "color", "lang"],
+      "required": [
+        "id",
+        "type",
+        "font",
+        "size",
+        "color",
+        "lang"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/layerId" },
-        "type": { "const": "text" },
-        "role": { "enum": ["headline", "subhead", "body", "cta", "caption", "label"] },
-        "text": { "type": "string", "minLength": 1 },
-        "font": { "type": "string", "pattern": "^brand\\.[a-z][a-z0-9_]*$" },
-        "weight": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 },
-        "size": { "type": "number", "minimum": 8, "maximum": 1000 },
-        "line_height": { "type": "number", "minimum": 0.5, "maximum": 3 },
-        "tracking": { "type": "number", "minimum": -0.2, "maximum": 1 },
-        "align": { "enum": ["left", "center", "right"] },
-        "color": { "$ref": "#/$defs/color" },
-        "lang": { "type": "string", "pattern": "^[a-z]{2}(-[A-Z]{2})?$" },
-        "grid": { "$ref": "#/$defs/gridPlacement" },
-        "box": { "$ref": "#/$defs/box" }
+        "id": {
+          "$ref": "#/$defs/layerId"
+        },
+        "type": {
+          "const": "text"
+        },
+        "role": {
+          "enum": [
+            "headline",
+            "subhead",
+            "body",
+            "cta",
+            "caption",
+            "label",
+            "decor"
+          ],
+          "description": "decor: graphic type (repeated words, bleed text) that carries no message; exempt from readability and safe-area checks"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "font": {
+          "type": "string",
+          "pattern": "^brand\\.[a-z][a-z0-9_]*$"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 900,
+          "multipleOf": 100
+        },
+        "size": {
+          "type": "number",
+          "minimum": 8,
+          "maximum": 1000
+        },
+        "line_height": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 3
+        },
+        "tracking": {
+          "type": "number",
+          "minimum": -0.2,
+          "maximum": 1
+        },
+        "align": {
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ]
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$"
+        },
+        "grid": {
+          "$ref": "#/$defs/gridPlacement"
+        },
+        "box": {
+          "$ref": "#/$defs/box"
+        },
+        "spans": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Inline runs with their own colour/weight; replaces text",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "text"
+            ],
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              },
+              "color": {
+                "$ref": "#/$defs/color"
+              },
+              "weight": {
+                "type": "integer",
+                "minimum": 100,
+                "maximum": 900,
+                "multipleOf": 100
+              }
+            }
+          }
+        },
+        "case": {
+          "enum": [
+            "none",
+            "upper"
+          ]
+        },
+        "rotate": {
+          "$ref": "#/$defs/rotate"
+        },
+        "shadow": {
+          "$ref": "#/$defs/shadow"
+        }
       },
-      "$ref": "#/$defs/placement"
+      "$ref": "#/$defs/placement",
+      "allOf": [
+        {
+          "oneOf": [
+            {
+              "required": [
+                "text"
+              ]
+            },
+            {
+              "required": [
+                "spans"
+              ]
+            }
+          ]
+        }
+      ]
     },
     "shapeLayer": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "type", "shape", "fill"],
+      "required": [
+        "id",
+        "type",
+        "shape",
+        "fill"
+      ],
       "properties": {
-        "id": { "$ref": "#/$defs/layerId" },
-        "type": { "const": "shape" },
-        "shape": { "enum": ["rect", "ellipse", "line"] },
-        "fill": { "$ref": "#/$defs/color" },
-        "radius": { "$ref": "#/$defs/nonNegInt" },
-        "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
-        "grid": { "$ref": "#/$defs/gridPlacement" },
-        "box": { "$ref": "#/$defs/box" }
+        "id": {
+          "$ref": "#/$defs/layerId"
+        },
+        "type": {
+          "const": "shape"
+        },
+        "shape": {
+          "enum": [
+            "rect",
+            "ellipse",
+            "line",
+            "polygon"
+          ]
+        },
+        "fill": {
+          "$ref": "#/$defs/paint"
+        },
+        "radius": {
+          "$ref": "#/$defs/nonNegInt"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "grid": {
+          "$ref": "#/$defs/gridPlacement"
+        },
+        "box": {
+          "$ref": "#/$defs/box"
+        },
+        "points": {
+          "$ref": "#/$defs/points"
+        },
+        "rotate": {
+          "$ref": "#/$defs/rotate"
+        },
+        "shadow": {
+          "$ref": "#/$defs/shadow"
+        }
+      },
+      "$ref": "#/$defs/placement",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "shape": {
+                "const": "polygon"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "points"
+            ]
+          }
+        }
+      ]
+    },
+    "gradient": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "stops"
+      ],
+      "properties": {
+        "type": {
+          "const": "linear"
+        },
+        "angle": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "Degrees, 0 = left to right, 90 = top to bottom"
+        },
+        "stops": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "offset",
+              "color"
+            ],
+            "properties": {
+              "offset": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "color": {
+                "$ref": "#/$defs/color"
+              }
+            }
+          }
+        }
+      }
+    },
+    "paint": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/color"
+        },
+        {
+          "$ref": "#/$defs/gradient"
+        }
+      ]
+    },
+    "rotate": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Degrees clockwise around the frame centre"
+    },
+    "shadow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "color"
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "blur": {
+          "type": "number",
+          "minimum": 0
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "points": {
+      "type": "array",
+      "minItems": 3,
+      "description": "Polygon corners as fractions of the frame (0..1)",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number",
+          "minimum": -0.5,
+          "maximum": 1.5
+        }
+      }
+    },
+    "patternLayer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "motif",
+        "color"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/layerId"
+        },
+        "type": {
+          "const": "pattern"
+        },
+        "motif": {
+          "enum": [
+            "dots",
+            "diagonal",
+            "grid",
+            "star8",
+            "chevron"
+          ]
+        },
+        "color": {
+          "$ref": "#/$defs/color"
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "scale": {
+          "type": "number",
+          "minimum": 16,
+          "maximum": 400,
+          "description": "Tile size in px"
+        },
+        "grid": {
+          "$ref": "#/$defs/gridPlacement"
+        },
+        "box": {
+          "$ref": "#/$defs/box"
+        }
       },
       "$ref": "#/$defs/placement"
     }

@@ -43,9 +43,8 @@ const contains = (outer, inner, tol = 0) =>
 const round = (v) => Math.round(v * 100) / 100;
 
 /** Renders everything except text so contrast is measured against what is really behind it. */
-function backgroundPixels(svg, layout, w) {
-  const textIds = new Set(layout.filter((l) => l.type === 'text').map((l) => l.id));
-  const noText = svg.replace(/<path id="([^"]+)" d="[^"]*"[^>]*\/>/g, (m, id) => (textIds.has(id) ? '' : m));
+function backgroundPixels(svg, w) {
+  const noText = svg.replace(/<g id="[^"]*" data-role="text"[^>]*>.*?<\/g>/g, '');
   const img = new Resvg(noText, { font: { loadSystemFonts: false } }).render();
   return { px: img.pixels, w, h: img.height };
 }
@@ -88,8 +87,10 @@ export function checkSpec(spec, { brandsDir, config }) {
   const fail = (code, layer, detail) =>
     failures.push({ code, severity: cfg.severity[code], criterion: CRITERION[code], layer, detail });
 
-  const texts = layout.filter((l) => l.type === 'text');
-  const bg = texts.length ? backgroundPixels(svg, layout, W) : null;
+  // Decorative type (role "decor") carries no message and may bleed or sit behind other text.
+  const texts = layout.filter((l) => l.type === 'text' && l.role !== 'decor');
+  const isDecor = (l) => l.type === 'text' && l.role === 'decor';
+  const bg = texts.length ? backgroundPixels(svg, W) : null;
 
   for (const t of texts) {
     // Typography
@@ -100,7 +101,10 @@ export function checkSpec(spec, { brandsDir, config }) {
     // Contrast
     const large = shown >= cfg.large_text.min_px || (shown >= cfg.large_text.bold_min_px && t.weight >= cfg.large_text.bold_weight);
     const need = large ? cfg.contrast.large : cfg.contrast.normal;
-    const ratio = measureContrast(bg, t.ink, hexToRgb(t.color), t.opacity, cfg.contrast.percentile);
+    // Mixed-colour text is only as readable as its weakest run.
+    const runs = t.colors ?? [{ hex: t.color, opacity: t.opacity }];
+    const ratios = runs.map((c) => measureContrast(bg, t.ink, hexToRgb(c.hex), c.opacity, cfg.contrast.percentile));
+    const ratio = ratios.includes(null) ? null : Math.min(...ratios);
     metrics.contrast[t.id] = ratio === null ? null : round(ratio);
     if (ratio !== null && ratio < need) {
       fail('contrast_low', t.id, `${round(ratio)}:1, needs ${need}:1 (${large ? 'large' : 'normal'} text)`);
@@ -115,9 +119,9 @@ export function checkSpec(spec, { brandsDir, config }) {
 
   // Overlaps: text on text is always wrong; text on a shape/image is only fine when fully inside it.
   layout.forEach((a, i) => {
-    if (a.type !== 'text') return;
+    if (a.type !== 'text' || isDecor(a)) return;
     layout.forEach((b, j) => {
-      if (i === j || !intersect(a.ink, b.ink, tol)) return;
+      if (i === j || isDecor(b) || !intersect(a.ink, b.ink, tol)) return;
       if (b.type === 'text' && j > i) fail('text_overlap', a.id, `overlaps text "${b.id}"`);
       if (b.type !== 'text' && !contains(b.ink, a.ink, tol)) fail('text_partial_overlap', a.id, `partly covers ${b.type} "${b.id}"`);
     });
@@ -127,7 +131,7 @@ export function checkSpec(spec, { brandsDir, config }) {
   const sa = spec.canvas.safe_area ?? { top: 0, bottom: 0, side: 0 };
   const safe = { x: sa.side, y: sa.top, w: W - 2 * sa.side, h: H - sa.top - sa.bottom };
   for (const l of layout) {
-    const guarded = l.type === 'text' || (l.type === 'image' && l.fit === 'contain');
+    const guarded = (l.type === 'text' && !isDecor(l)) || (l.type === 'image' && l.fit === 'contain');
     if (guarded && !contains(safe, l.ink, tol)) fail('safe_area_violation', l.id, 'outside the platform safe area');
   }
 
@@ -143,9 +147,13 @@ export function checkSpec(spec, { brandsDir, config }) {
   // Palette: literal hex colours that are not in the brand kit.
   const palette = new Set(Object.values(brand.kit.colors).map((c) => c.hex.toUpperCase()));
   for (const layer of spec.layers) {
-    const value = layer.color ?? layer.fill;
-    if (value && value.startsWith('#') && !palette.has(value.slice(0, 7).toUpperCase())) {
-      fail('off_palette', layer.id, `${value} is not a brand colour`);
+    const used = [layer.color, layer.tint?.color, ...(layer.spans ?? []).map((r) => r.color)];
+    if (typeof layer.fill === 'string') used.push(layer.fill);
+    else if (layer.fill?.stops) used.push(...layer.fill.stops.map((st) => st.color));
+    for (const value of new Set(used.filter(Boolean))) {
+      if (value.startsWith('#') && !palette.has(value.slice(0, 7).toUpperCase())) {
+        fail('off_palette', layer.id, `${value} is not a brand colour`);
+      }
     }
   }
 

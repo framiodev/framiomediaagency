@@ -14,7 +14,8 @@ const USAGE = `Usage:
   ajans glyphs <font.ttf|otf|woff|woff2> [...] check Turkish glyph coverage
   ajans render <spec.json> [-o out.png] [--brands dir]   render a spec to PNG
   ajans check <spec.json> [...] [--brands dir] [--json]   deterministic rubric checks
-  ajans cost [YYYY-MM]                  model spending against budget caps`;
+  ajans cost [YYYY-MM]                  model spending against budget caps
+  ajans psd <spec.json> [-o dir]        layered PSD through Photoshop (Windows)`;
 
 const commands = {
   validate: (file) => validateSpec(JSON.parse(readFileSync(file, 'utf8'))),
@@ -49,6 +50,25 @@ if (command === 'render') {
     writeFileSync(target, png);
     for (const w of warnings) console.warn(`  ! ${w}`);
     console.log(`✓ ${target} (${Math.round(performance.now() - started)} ms)`);
+    process.exit(0);
+  } catch (err) {
+    console.error(`✗ ${file}: ${err.message}`);
+    process.exit(1);
+  }
+}
+
+if (command === 'psd') {
+  // ajans psd <spec.json> [-o out/psd] [--brands dir]: layered PSD via Photoshop (Windows)
+  const { buildPsd } = await import('./engines/photoshop.js');
+  const i = files.indexOf('-o');
+  const outDir = i === -1 ? join('out', 'psd') : files.splice(i, 2)[1];
+  const j = files.indexOf('--brands');
+  const brandsDir = j === -1 ? 'brands' : files.splice(j, 2)[1];
+  const [file] = files;
+  try {
+    const res = buildPsd(JSON.parse(readFileSync(file, 'utf8')), { brandsDir, outDir, name: basename(file, '.json') });
+    for (const note of res.notes) console.warn(`  ! ${note}`);
+    console.log(`✓ ${res.psd} (${res.result})`);
     process.exit(0);
   } catch (err) {
     console.error(`✗ ${file}: ${err.message}`);

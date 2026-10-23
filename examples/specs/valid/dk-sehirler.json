@@ -1,0 +1,302 @@
+{
+  "spec_version": "0.2",
+  "intent": {
+    "message": "Güvenle, konforla, keyifle: DK Köksallar'ın hatları",
+    "audience": "Şehirlerarası yolculuk yapanlar",
+    "cta": "dkkoksallar.com",
+    "platform": "instagram_post_4x5",
+    "label": "concept_study"
+  },
+  "canvas": {
+    "w": 1080,
+    "h": 1350,
+    "unit": "px",
+    "background": "brand.mist",
+    "safe_area": {
+      "top": 120,
+      "bottom": 160,
+      "side": 72
+    }
+  },
+  "brand_ref": "dk_koksallar",
+  "grid": {
+    "cols": 12,
+    "rows": 12,
+    "margin": 72,
+    "gutter": 24,
+    "baseline": 8
+  },
+  "layers": [
+    {
+      "id": "row1",
+      "type": "text",
+      "role": "decor",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 132,
+      "case": "upper",
+      "rotate": -8,
+      "spans": [
+        {
+          "text": "Mersin ",
+          "color": "brand.navy"
+        },
+        {
+          "text": "İstanbul ",
+          "color": "brand.accent"
+        },
+        {
+          "text": "Ankara",
+          "color": "brand.primary"
+        }
+      ],
+      "color": "brand.navy",
+      "box": {
+        "x": -520,
+        "y": 150,
+        "w": 2600,
+        "h": 160
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "row2",
+      "type": "text",
+      "role": "decor",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 132,
+      "case": "upper",
+      "rotate": -8,
+      "spans": [
+        {
+          "text": "Çanakkale ",
+          "color": "brand.primary"
+        },
+        {
+          "text": "İzmir ",
+          "color": "brand.navy"
+        },
+        {
+          "text": "Bursa",
+          "color": "brand.accent"
+        }
+      ],
+      "color": "brand.navy",
+      "box": {
+        "x": -680,
+        "y": 315,
+        "w": 2600,
+        "h": 160
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "row3",
+      "type": "text",
+      "role": "decor",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 132,
+      "case": "upper",
+      "rotate": -8,
+      "spans": [
+        {
+          "text": "Edirne ",
+          "color": "brand.accent"
+        },
+        {
+          "text": "Eskişehir ",
+          "color": "brand.primary"
+        },
+        {
+          "text": "Niğde",
+          "color": "brand.navy"
+        }
+      ],
+      "color": "brand.navy",
+      "box": {
+        "x": -520,
+        "y": 480,
+        "w": 2600,
+        "h": 160
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "row4",
+      "type": "text",
+      "role": "decor",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 132,
+      "case": "upper",
+      "rotate": -8,
+      "spans": [
+        {
+          "text": "Balıkesir ",
+          "color": "brand.navy"
+        },
+        {
+          "text": "Mersin ",
+          "color": "brand.primary"
+        },
+        {
+          "text": "İstanbul",
+          "color": "brand.accent"
+        }
+      ],
+      "color": "brand.navy",
+      "box": {
+        "x": -680,
+        "y": 645,
+        "w": 2600,
+        "h": 160
+      },
+      "lang": "tr"
+    },
+    {
+      "id": "panel",
+      "type": "shape",
+      "shape": "polygon",
+      "fill": "brand.navy",
+      "box": {
+        "x": 0,
+        "y": 760,
+        "w": 1080,
+        "h": 590
+      },
+      "points": [
+        [
+          0,
+          0.2
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "shadow": {
+        "x": 0,
+        "y": -10,
+        "blur": 40,
+        "color": "#000000",
+        "opacity": 0.3
+      }
+    },
+    {
+      "id": "badge",
+      "type": "shape",
+      "shape": "rect",
+      "fill": "brand.paper",
+      "radius": 16,
+      "box": {
+        "x": 72,
+        "y": 130,
+        "w": 400,
+        "h": 84
+      },
+      "shadow": {
+        "x": 0,
+        "y": 6,
+        "blur": 20,
+        "color": "#000000",
+        "opacity": 0.2
+      }
+    },
+    {
+      "id": "logo",
+      "type": "image",
+      "src": "asset://logo-horizontal",
+      "fit": "contain",
+      "box": {
+        "x": 92,
+        "y": 146,
+        "w": 360,
+        "h": 52
+      }
+    },
+    {
+      "id": "headline",
+      "type": "text",
+      "role": "headline",
+      "font": "brand.display",
+      "weight": 800,
+      "size": 84,
+      "line_height": 1.05,
+      "spans": [
+        {
+          "text": "Güvenle, ",
+          "color": "brand.ink_inverse"
+        },
+        {
+          "text": "konforla, ",
+          "color": "brand.sky"
+        },
+        {
+          "text": "keyifle.",
+          "color": "brand.ink_inverse"
+        }
+      ],
+      "color": "brand.ink_inverse",
+      "lang": "tr",
+      "box": {
+        "x": 72,
+        "y": 900,
+        "w": 936,
+        "h": 195
+      }
+    },
+    {
+      "id": "body",
+      "type": "text",
+      "role": "body",
+      "text": "Mersin'den İstanbul'a, Çanakkale'den İzmir'e.",
+      "font": "brand.text",
+      "weight": 400,
+      "size": 36,
+      "color": "brand.ink_inverse",
+      "lang": "tr",
+      "box": {
+        "x": 72,
+        "y": 1095,
+        "w": 936,
+        "h": 48
+      }
+    },
+    {
+      "id": "cta",
+      "type": "text",
+      "role": "cta",
+      "text": "dkkoksallar.com  ·  0850 244 01 33",
+      "font": "brand.text",
+      "weight": 600,
+      "size": 34,
+      "color": "brand.sky",
+      "box": {
+        "x": 72,
+        "y": 1145,
+        "w": 936,
+        "h": 44
+      },
+      "lang": "tr"
+    }
+  ],
+  "provenance": {
+    "assets": [
+      {
+        "id": "logo-horizontal",
+        "source": "https://seeklogo.com/vector-logo/359735/dk-koksallar (EPS logo kılavuzu)",
+        "license": "Marka sahibine ait; izinsiz, yalnızca iç konsept"
+      }
+    ]
+  }
+}
